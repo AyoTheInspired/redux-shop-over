@@ -1,0 +1,14 @@
+:root {
+	--pry-clr-1: #0f0c29;
+	--pry-clr-2: #302b63;
+	--pry-clr-3: #24243e;
+
+	/* Transition */
+	--sht-trans: all 0.2s linear;
+}
+
+.app {
+	/* background: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
+	min-height: 100vh;
+	/* background: #383277; */
+}

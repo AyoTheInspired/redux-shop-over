@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductListing from "./components/ProductListing";
 import ProductDetail from "./components/ProductDetail";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
 	return (
