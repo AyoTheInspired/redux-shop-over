@@ -1,4 +1,8 @@
-import { ShoppingBasket, ShoppingCart } from "@material-ui/icons";
+import {
+	ShoppingBasket,
+	ShoppingCart,
+	ShoppingCartOutlined,
+} from "@material-ui/icons";
 import React from "react";
 import { Badge } from "react-bootstrap";
 import styled from "styled-components";
@@ -10,7 +14,7 @@ function Navigation() {
 				<h3 className="mb-0">The ShopOver!</h3>
 			</div>
 			<div className="nav__right">
-				<ShoppingCart className="cart__icon" />
+				<ShoppingCartOutlined className="cart__icon" />
 				<span className="badge__wrap">9</span>
 			</div>
 		</Nav>
@@ -24,19 +28,23 @@ const Nav = styled.nav`
 	top: 0;
 	background: #f1f7f8;
 	width: 100%;
+	box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.35);
 
 	.nav__right {
 		position: relative;
+		margin-right: 5px;
+		margin-top: 5px;
 
 		.cart__icon {
 			font-size: 25px;
+			color: var(--pry-clr-1);
 		}
 
 		.badge__wrap {
 			position: absolute;
 			top: -5px;
 			right: -10px;
-			background: red;
+			background: var(--pry-clr-2);
 			font-size: 13px;
 			padding: 1px 6px;
 			border-radius: 50%;
