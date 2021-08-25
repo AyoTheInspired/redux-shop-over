@@ -26,9 +26,10 @@ export default Navigation;
 const Nav = styled.nav`
 	position: sticky;
 	top: 0;
+	z-index: 100;
 	background: #f1f7f8;
 	width: 100%;
-	box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.35);
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
 
 	.nav__right {
 		position: relative;

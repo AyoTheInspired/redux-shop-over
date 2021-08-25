@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectState, setProducts } from "../features/shopSlice";
 import ProductComponent from "./Product";
 import axios from "axios";
+import { Container, Row } from "react-bootstrap";
 
 const ProductListing = () => {
 	const shopState = useSelector(selectState);
@@ -16,22 +17,26 @@ const ProductListing = () => {
 				console.log("Err", err);
 			});
 
-		console.log(response.data);
-		dispatch(setProducts(response.data));
+		console.log(response?.data);
+		dispatch(setProducts(response?.data));
 	};
 
 	useEffect(() => {
 		fetchProducts();
 	}, []);
 	return (
-		<Div className="ui grid container">
-			<ProductComponent />
-		</Div>
+		<Container>
+			<Row>
+				<Section className="flexed flex-wrap py-3">
+					<ProductComponent />
+				</Section>
+			</Row>
+		</Container>
 	);
 };
 
 export default ProductListing;
 
-const Div = styled.div`
-	margin-top: 20px !important;
+const Section = styled.section`
+	/* margin-top: 20px !important; */
 `;
