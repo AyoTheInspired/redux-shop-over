@@ -8,7 +8,19 @@
 }
 
 .app {
-	/* background: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
+	background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
 	min-height: 100vh;
 	/* background: #383277; */
+}
+
+.flexed {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-btw {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
