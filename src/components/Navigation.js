@@ -1,10 +1,5 @@
-import {
-	ShoppingBasket,
-	ShoppingCart,
-	ShoppingCartOutlined,
-} from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
-import { Badge } from "react-bootstrap";
 import styled from "styled-components";
 
 function Navigation() {

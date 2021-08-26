@@ -1,9 +1,9 @@
-import { AddShoppingCart, TimeToLeaveRounded } from "@material-ui/icons";
+import { AddShoppingCart } from "@material-ui/icons";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectSetProducts } from "../features/shopSlice";
 import { Link } from "react-router-dom";
-import { Card, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import StarRatingComponent from "react-star-rating-component";
