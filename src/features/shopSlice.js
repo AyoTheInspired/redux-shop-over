@@ -8,16 +8,13 @@ const initialState = {
 export const shopSlice = createSlice({
 	name: "shop",
 	initialState,
-	// The `reducers` field lets us define reducers and generate associated actions
 	reducers: {
 		setProducts: (state, action) => {
 			return { ...state, products: action.payload };
 		},
 
 		selectedProduct: (state, action) => {
-			return {
-				selectedProduct: action.payload,
-			};
+			return { ...state, selectedProduct: action.payload };
 		},
 
 		incrementByAmount: (state, action) => {
@@ -26,12 +23,12 @@ export const shopSlice = createSlice({
 	},
 });
 
-export const { setProducts, selectedProducts } = shopSlice.actions;
+export const { setProducts, selectedProduct } = shopSlice.actions;
 
 export const selectState = (state) => state.shop;
 
 export const selectSetProducts = (state) => state.shop.products;
 
-export const selectSelectedProduct = (state) => state.shop.selectedProduct;
+// export const selectSelectedProduct = (state) => state.shop.selectedProduct;
 
 export default shopSlice.reducer;
