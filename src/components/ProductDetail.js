@@ -124,10 +124,10 @@ const Section = styled.section`
 
 	.singleProduct__details {
 		justify-content: space-evenly;
-		height: 100%;
 
-		@media (max-width: 450px) {
-			height: 50%;
+		@media (min-width: 768px) {
+			height: 100%;
+			/* height: 50%; */
 		}
 
 		.singleProduct__bottomRight {
