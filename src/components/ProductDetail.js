@@ -6,6 +6,11 @@ import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
 import { selectedProduct, selectSelectedProduct } from "../features/shopSlice";
 import LabelIcon from "@material-ui/icons/Label";
+import {
+	AddShoppingCartRounded,
+	ShoppingCartOutlined,
+} from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
 
 function ProductDetail() {
 	const { productId } = useParams();
@@ -51,8 +56,24 @@ function ProductDetail() {
 							</p>
 						</div>
 					</Col>
-					<Col sm={10} md={5} lg={5} className="singleProduct__desc">
-						PRODUCT DETAILS
+					<Col
+						sm={10}
+						md={5}
+						lg={5}
+						className="singleProduct__desc bg-warning d-flex flex-column p-3">
+						<p className="mb-0 text-center text-capitalize">
+							{singleProduct.description}{" "}
+						</p>
+
+						<div className="flexed p-2">
+							<p className="singleProduct-category text-capitalize">
+								{singleProduct.category}
+							</p>
+
+							<IconButton>
+								<AddShoppingCartRounded className="singleProduct__cart" />
+							</IconButton>
+						</div>
 					</Col>
 				</Section>
 			</Row>
@@ -82,14 +103,14 @@ const Section = styled.section`
 			font-weight: bold;
 			font-size: 15px;
 		}
-
-		.single__product-price {
-			background: var(--pry-clr-1);
-			padding: 5px 7px;
-			color: #fff;
-			font-weight: 500;
-			border-radius: 4px;
-			box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-		}
+	}
+	.single__product-price,
+	.singleProduct-category {
+		background: var(--pry-clr-1);
+		padding: 5px 7px;
+		color: #fff;
+		font-weight: 500;
+		border-radius: 4px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 	}
 `;
