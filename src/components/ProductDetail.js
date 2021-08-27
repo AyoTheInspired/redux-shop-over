@@ -11,16 +11,14 @@ function ProductDetail() {
 	const dispatch = useDispatch();
 	const singleProduct = useSelector(selectSelectedProduct);
 
-	console.log(productId);
-
 	const fetchProductDetail = async () => {
 		const response = await axios
 			.get(`https://fakestoreapi.com/products/${productId}`)
 			.catch((err) => {
+				alert(err);
 				console.log(err);
 			});
 		dispatch(selectedProduct(response.data));
-		console.log(singleProduct);
 	};
 
 	useEffect(() => {
