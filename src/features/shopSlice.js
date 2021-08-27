@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	products: [],
-	selectedProduct: "",
+	selectedProduct: [],
 };
 
 export const shopSlice = createSlice({
@@ -15,6 +15,7 @@ export const shopSlice = createSlice({
 
 		selectedProduct: (state, action) => {
 			return { ...state, selectedProduct: action.payload };
+			// state.selectedProduct = action.payload;
 		},
 
 		incrementByAmount: (state, action) => {
@@ -29,6 +30,6 @@ export const selectState = (state) => state.shop;
 
 export const selectSetProducts = (state) => state.shop.products;
 
-// export const selectSelectedProduct = (state) => state.shop.selectedProduct;
+export const selectSelectedProduct = (state) => state.shop.selectedProduct;
 
 export default shopSlice.reducer;
