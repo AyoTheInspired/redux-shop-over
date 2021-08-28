@@ -64,7 +64,6 @@ function ProductComponent() {
 									/>
 								</div>
 								<div className="details__bottom">
-									{/* <p className="mb-0 text-capitalize text-center">{category}</p> */}
 									<Link to={`/product/${id}`} className="product__link">
 										<p className="mb-0 product__more text-center my-2 py-2">
 											More Details
