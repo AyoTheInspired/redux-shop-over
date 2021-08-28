@@ -20,7 +20,7 @@ function ProductComponent() {
 	return (
 		<>
 			{products.map((product) => {
-				const { id, title, image, price, category } = product;
+				const { id, title, image, price } = product;
 
 				return (
 					<Col lg={3} md={5} sm={4} key={id} className="my-3">

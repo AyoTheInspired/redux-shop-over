@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { selectState, setProducts } from "../features/shopSlice";
+import { setProducts } from "../features/shopSlice";
 import ProductComponent from "./Product";
 import axios from "axios";
 import { Container, Row } from "react-bootstrap";
 
 const ProductListing = () => {
-	const shopState = useSelector(selectState);
 	const dispatch = useDispatch();
 
 	const fetchProducts = async () => {
