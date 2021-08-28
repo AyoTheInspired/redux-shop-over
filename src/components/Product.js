@@ -1,26 +1,32 @@
 import { AddShoppingCart } from "@material-ui/icons";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectSetProducts } from "../features/shopSlice";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import StarRatingComponent from "react-star-rating-component";
+import { addToCart } from "../features/shopSlice";
 
 function ProductComponent() {
 	const products = useSelector(selectSetProducts);
-	// const renderList = products.map((product) => {
-	// 	const { id, title, image, price, category } = product;
-	// });
 
 	const truncate = (text, number) =>
 		text.length > number ? `${text.substring(0, number)}...` : text;
 
+	const dispatch = useDispatch();
+
 	return (
 		<>
 			{products.map((product) => {
-				const { id, title, image, price } = product;
+				const {
+					id,
+					title,
+					image,
+					price,
+					rating: { rate },
+				} = product;
 
 				return (
 					<Col lg={3} md={5} sm={4} key={id} className="my-3">
@@ -40,7 +46,12 @@ function ProductComponent() {
 										{truncate(title, 25)}
 									</p>
 									<IconButton>
-										<AddShoppingCart className="items__cartIcon" />
+										<AddShoppingCart
+											className="items__cartIcon"
+											onClick={() => {
+												dispatch(addToCart(product));
+											}}
+										/>
 									</IconButton>
 								</div>
 								<div className="details__mid flex-btw">
@@ -49,7 +60,7 @@ function ProductComponent() {
 										name={title}
 										className="star__rating"
 										starCount={5}
-										value={3}
+										value={rate}
 									/>
 								</div>
 								<div className="details__bottom">

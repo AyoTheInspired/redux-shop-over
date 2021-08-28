@@ -54,7 +54,16 @@ export const shopSlice = createSlice({
 			};
 		},
 
-		adjustQuantity: (state, action) => {},
+		adjustQuantity: (state, action) => {
+			return {
+				...state,
+				cart: state.cart.map((item) =>
+					item.id === item.payload.id
+						? { ...item, qty: action.payload.qty }
+						: item
+				),
+			};
+		},
 	},
 });
 
