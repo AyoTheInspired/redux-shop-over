@@ -46,6 +46,15 @@ export const shopSlice = createSlice({
 					: [...state.cart, { ...item, qty: 1 }],
 			};
 		},
+
+		removeFromCart: (state, action) => {
+			return {
+				...state,
+				cart: state.cart.filter((item) => item.id !== action.payload.id),
+			};
+		},
+
+		adjustQuantity: (state, action) => {},
 	},
 });
 
@@ -54,6 +63,7 @@ export const {
 	selectedProduct,
 	removeSelectedProduct,
 	addToCart,
+	removeFromCart,
 } = shopSlice.actions;
 
 // export const selectState = (state) => state.shop;
