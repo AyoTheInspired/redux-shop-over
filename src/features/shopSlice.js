@@ -27,15 +27,34 @@ export const shopSlice = createSlice({
 
 		addToCart: (state, action) => {
 			// Get item's data from products array
+			const item = state.products.find(
+				(product) => product.id === action.payload.id
+			);
 			// Item already in cart ? ADJ_QTY : ADD
+			const inCart = state.cart.find((item) =>
+				item.id === action.payload.id ? true : false
+			);
 
-			return { ...state, cart: [...cart, {}] };
+			return {
+				...state,
+				cart: inCart
+					? state.cart.map((item) =>
+							item.id === action.payload.id
+								? { ...item, qty: item.qty + 1 }
+								: item
+					  )
+					: [...state.cart, { ...item, qty: 1 }],
+			};
 		},
 	},
 });
 
-export const { setProducts, selectedProduct, removeSelectedProduct } =
-	shopSlice.actions;
+export const {
+	setProducts,
+	selectedProduct,
+	removeSelectedProduct,
+	addToCart,
+} = shopSlice.actions;
 
 // export const selectState = (state) => state.shop;
 
