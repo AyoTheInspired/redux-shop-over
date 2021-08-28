@@ -1,4 +1,5 @@
-import { AddCircle, RemoveCircle } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
+import { AddCircle, DeleteForever, RemoveCircle } from "@material-ui/icons";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -12,24 +13,24 @@ function Cart() {
 		<Container>
 			<Row>
 				the cart page
-				<Section className="flexed flex-wrap bg-secondary">
+				<Section className="flexed flex-wrap bg-secondary py-4">
 					<Col sm={8} md={5} lg={5} className="cartPage__left">
 						{cartItems.map((item) => {
 							const { image, title, price, id, qty } = item;
 
 							return (
-								<CartItemWrap key={id} className="flexed">
+								<CartItemWrap key={id} className="flexed my-4">
 									<div className="cartItem__imageWrap">
 										<img
 											src={image}
 											alt={title}
-											width="80"
+											width="70"
 											className="cartItem__image"
 										/>
 									</div>
 									<div className="cartItem__titleWrap">
 										<div className="itemTitle__top mb-3">
-											<p className="mb-0 text-center cartItem__title">
+											<p className="mb-0 text-center cartItem__title mr-2">
 												{title}
 											</p>
 										</div>
@@ -38,22 +39,31 @@ function Cart() {
 												Quantity
 											</p>
 											<div className="qty__buttons flexed mt-3">
-												{/* <span className="reduce__qty"> - </span> */}
 												<RemoveCircle className="adjuster" />
 												<p className="item__qty mb-0 mx-3">{qty}</p>
 												<AddCircle className="adjuster" />
-												{/* <span className="increase__qty"> + </span> */}
 											</div>
 										</div>
 									</div>
-									<div className="cartItem__priceWrap d-flex flex-column">
+									<div className="cartItem__priceWrap">
 										<div className="item__price">
-											<p className="mb-0 price__value"> {price} </p>
+											<p className="mb-0 price__value p-2 text-center">
+												$ {price}{" "}
+											</p>
 										</div>
 
-										<div className="item__total"></div>
+										<div className="item__total flex-col my-3 p-2">
+											<p className="mb-0 total__tag">Total Cost</p>
+											<p className="total__value"> {price * qty} </p>
+										</div>
 
-										<div className="item__remove"></div>
+										<div className="item__remove flexed p-2">
+											{/* <IconButton> */}
+											<DeleteForever className="delete__icon" />
+
+											<p className="remove mb-0">Remove</p>
+											{/* </IconButton> */}
+										</div>
 									</div>
 								</CartItemWrap>
 							);
@@ -73,10 +83,8 @@ const Section = styled.section``;
 const CartItemWrap = styled.div`
 	background: #fff;
 	padding: 10px 15px;
-
-	.cartItem__imageWrap {
-		margin-right: 15px;
-	}
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
 
 	.itemQtyTag {
 		padding: 5px 15px;
@@ -87,10 +95,15 @@ const CartItemWrap = styled.div`
 	}
 
 	.cartItem__titleWrap {
+		margin: 10px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+
+		.cartItem__title {
+			font-weight: bold;
+		}
+		/* align-items: center; */
 	}
 
 	.item__qty {
@@ -98,18 +111,44 @@ const CartItemWrap = styled.div`
 		font-weight: bold;
 	}
 
-	/* .reduce__qty {
-		background: var(--pry-clr-1);
-		color: #fff;
-		font-size: 22px;
-		border-radius: 100%;
-		padding: 0 10px;
-	} */
-
 	.adjuster {
 		color: var(--pry-clr-1);
 		font-size: 22px;
 		cursor: pointer;
-		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.6);
+	}
+
+	.cartItem__priceWrap {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.price__value,
+		.item__total,
+		.item__remove {
+			background: var(--pry-clr-1);
+			color: #fff;
+			border-radius: 4px;
+			white-space: nowrap;
+			box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.3);
+
+			.total__tag {
+				font-size: 12px;
+			}
+		}
+
+		.price__value {
+			font-size: 12px;
+			font-weight: bold;
+			letter-spacing: 0.5px;
+		}
+
+		.item__remove {
+			transition: var(--sht-trans);
+			cursor: pointer;
+			:hover {
+				background: red;
+			}
+		}
 	}
 `;
