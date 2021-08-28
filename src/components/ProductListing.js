@@ -13,7 +13,7 @@ const ProductListing = () => {
 		const response = await axios
 			.get("https://fakestoreapi.com/products")
 			.catch((err) => {
-				console.log("Err", err);
+				alert("Err", err);
 			});
 
 		console.log(response?.data);
