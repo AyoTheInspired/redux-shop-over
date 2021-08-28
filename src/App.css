@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+
 :root {
 	--pry-clr-1: #0f0c29;
 	--pry-clr-2: #302b63;
@@ -30,4 +32,11 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.underline {
+	width: 50%;
+	height: 0.25rem;
+	margin: 0.6rem auto;
+	background: var(--pry-clr-1);
 }

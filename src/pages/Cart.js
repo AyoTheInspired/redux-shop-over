@@ -12,14 +12,13 @@ function Cart() {
 	return (
 		<Container>
 			<Row>
-				the cart page
-				<Section className="flexed flex-wrap bg-secondary py-4">
-					<Col sm={8} md={5} lg={5} className="cartPage__left">
+				<Section className="flexed flex-wrap py-4 mt-5">
+					<Col sm={8} md={5} lg={6} className="cartPage__left">
 						{cartItems.map((item) => {
 							const { image, title, price, id, qty } = item;
 
 							return (
-								<CartItemWrap key={id} className="flexed my-4">
+								<CartItemWrap key={id} className="flexed my-4 col-lg-8">
 									<div className="cartItem__imageWrap">
 										<img
 											src={image}
@@ -35,9 +34,7 @@ function Cart() {
 											</p>
 										</div>
 										<div className="itemTitle__bottom">
-											<p className="mb-0 my-2 itemQtyTag text-center">
-												Quantity
-											</p>
+											<p className="mb-0 itemQtyTag text-center">Quantity</p>
 											<div className="qty__buttons flexed mt-3">
 												<RemoveCircle className="adjuster" />
 												<p className="item__qty mb-0 mx-3">{qty}</p>
@@ -54,7 +51,7 @@ function Cart() {
 
 										<div className="item__total flex-col my-3 p-2">
 											<p className="mb-0 total__tag">Total Cost</p>
-											<p className="total__value"> {price * qty} </p>
+											<p className="total__value">$ {price * qty} </p>
 										</div>
 
 										<div className="item__remove flexed p-2">
@@ -69,7 +66,11 @@ function Cart() {
 							);
 						})}
 					</Col>
-					<Col sm={8} md={5} lg={5} className="cartPage__right"></Col>
+					<OrderSummary
+						sm={8}
+						md={5}
+						lg={4}
+						className="cartPage__right"></OrderSummary>
 				</Section>
 			</Row>
 		</Container>
@@ -78,13 +79,15 @@ function Cart() {
 
 export default Cart;
 
-const Section = styled.section``;
+const Section = styled.section`
+	background: #d4d4d4;
+`;
 
 const CartItemWrap = styled.div`
 	background: #fff;
 	padding: 10px 15px;
 	border-radius: 10px;
-	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
 
 	.itemQtyTag {
 		padding: 5px 15px;
@@ -137,6 +140,14 @@ const CartItemWrap = styled.div`
 			}
 		}
 
+		.item__total {
+			background-image: linear-gradient(
+				to top,
+				var(--pry-clr-1),
+				var(--pry-clr-2)
+			);
+		}
+
 		.price__value {
 			font-size: 12px;
 			font-weight: bold;
@@ -152,3 +163,5 @@ const CartItemWrap = styled.div`
 		}
 	}
 `;
+
+const OrderSummary = styled(Col)``;

@@ -24,7 +24,7 @@ function Navigation() {
 		<Nav className="py-2 px-3 flex-btw">
 			<div className="nav__left">
 				<Link to="/" className="homeLink">
-					<h3 className="mb-0">The ShopOver!</h3>
+					<p className="mb-0 logo__text">TheShopOver!</p>
 				</Link>
 			</div>
 			<div className="nav__right">
@@ -50,6 +50,16 @@ const Nav = styled.nav`
 	.homeLink {
 		text-decoration: none !important;
 		color: #000;
+	}
+
+	.logo__text {
+		font-family: "Cookie", sans-serif;
+		font-size: 25px;
+		background: var(--pry-clr-1);
+		padding: 0 10px;
+		color: #fff;
+		letter-spacing: 0.5px;
+		border-radius: 5px;
 	}
 
 	.nav__right {
