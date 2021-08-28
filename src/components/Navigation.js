@@ -1,16 +1,35 @@
 import { ShoppingCartOutlined } from "@material-ui/icons";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { selectCart } from "../features/shopSlice";
 
 function Navigation() {
+	const cart = useSelector(selectCart);
+
+	const [cartItems, setCartItems] = useState(0);
+
+	useEffect(() => {
+		let count = 0;
+
+		cart.forEach((item) => {
+			count += item.qty;
+
+			setCartItems(count);
+		});
+	}, [cart, cartItems]);
+
 	return (
 		<Nav className="py-2 px-3 flex-btw">
 			<div className="nav__left">
-				<h3 className="mb-0">The ShopOver!</h3>
+				<Link to="/" className="homeLink">
+					<h3 className="mb-0">The ShopOver!</h3>
+				</Link>
 			</div>
 			<div className="nav__right">
 				<ShoppingCartOutlined className="cart__icon" />
-				<span className="badge__wrap">9</span>
+				<span className="badge__wrap"> {cartItems} </span>
 			</div>
 		</Nav>
 	);
@@ -25,6 +44,11 @@ const Nav = styled.nav`
 	background: #f1f7f8;
 	width: 100%;
 	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
+
+	.homeLink {
+		text-decoration: none !important;
+		color: #000;
+	}
 
 	.nav__right {
 		position: relative;

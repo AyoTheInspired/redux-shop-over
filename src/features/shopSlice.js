@@ -81,4 +81,6 @@ export const selectSetProducts = (state) => state.shop.products;
 
 export const selectSelectedProduct = (state) => state.shop.selectedProduct;
 
+export const selectCart = (state) => state.shop.cart;
+
 export default shopSlice.reducer;
