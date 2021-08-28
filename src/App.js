@@ -3,8 +3,9 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductListing from "./components/ProductListing";
 import ProductDetail from "./pages/ProductDetail";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
+import Cart from "./pages/Cart";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
 	return (
@@ -13,8 +14,9 @@ function App() {
 				{/* <Header /> */}
 				<Navigation />
 				<Switch>
-					<Route path="/" exact component={ProductListing} />
-					<Route path="/product/:productId" exact component={ProductDetail} />
+					<Route exact path="/" component={ProductListing} />
+					<Route exact path="/product/:productId" component={ProductDetail} />
+					<Route exact path="/cart" component={Cart} />
 					{/* <Route>404 Not Found</Route> */}
 				</Switch>
 			</Router>

@@ -28,8 +28,10 @@ function Navigation() {
 				</Link>
 			</div>
 			<div className="nav__right">
-				<ShoppingCartOutlined className="cart__icon" />
-				<span className="badge__wrap"> {cartItems} </span>
+				<Link to="/cart">
+					<ShoppingCartOutlined className="cart__icon" />
+					<span className="badge__wrap"> {cartItems} </span>
+				</Link>
 			</div>
 		</Nav>
 	);
