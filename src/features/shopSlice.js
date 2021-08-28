@@ -18,13 +18,14 @@ export const shopSlice = createSlice({
 			// state.selectedProduct = action.payload;
 		},
 
-		incrementByAmount: (state, action) => {
-			state.value += action.payload;
+		removeSelectedProduct: (state) => {
+			return { ...state, selectedProduct: [] };
 		},
 	},
 });
 
-export const { setProducts, selectedProduct } = shopSlice.actions;
+export const { setProducts, selectedProduct, removeSelectedProduct } =
+	shopSlice.actions;
 
 export const selectState = (state) => state.shop;
 

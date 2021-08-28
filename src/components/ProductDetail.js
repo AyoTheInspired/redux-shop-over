@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
-import { selectedProduct, selectSelectedProduct } from "../features/shopSlice";
+import {
+	removeSelectedProduct,
+	selectedProduct,
+	selectSelectedProduct,
+} from "../features/shopSlice";
 import LabelIcon from "@material-ui/icons/Label";
 import {
 	AddShoppingCartRounded,
@@ -29,24 +33,28 @@ function ProductDetail() {
 
 	useEffect(() => {
 		fetchProductDetail();
+
+		return () => {
+			dispatch(removeSelectedProduct());
+		};
 	}, [productId]);
 
 	return (
 		<Container>
 			<Row>
-				<Section className="flexed flex-wrap py-5 my-4">
+				<Section className="flexed flex-wrap py-5 mt-5">
 					<Col
 						sm={10}
 						md={5}
 						lg={5}
-						className="singleProduct__imgWrap py-2 px-3 d-flex flex-column">
+						className="singleProduct__imgWrap py-2 px-3 d-flex flex-column justify-content-between">
+						{/* <div className="img__wrapper"></div> */}
 						<img
 							src={singleProduct.image}
-							// width="300"
 							alt={singleProduct.title}
 							className="mx-auto m-2 singleProduct__img"
 						/>
-						<div className="singleProduct__bottom mt-3 col">
+						<div className="singleProduct__bottom mt-3">
 							<p className="mb-0 single__product-title">
 								{singleProduct.title}{" "}
 							</p>
@@ -84,7 +92,6 @@ function ProductDetail() {
 export default ProductDetail;
 
 const Section = styled.section`
-	/* min-height: calc(100vh - 44px); */
 	background: var(--pry-clr-2);
 	.singleProduct__imgWrap,
 	.singleProduct__details {
@@ -93,11 +100,7 @@ const Section = styled.section`
 	}
 
 	.singleProduct__img {
-		width: 70%;
-
-		@media (max-width: 768px) {
-			/* width: 50px !important; */
-		}
+		width: 50%;
 	}
 
 	.singleProduct__bottom {
@@ -110,6 +113,7 @@ const Section = styled.section`
 		.single__product-title {
 			font-weight: bold;
 			font-size: 15px;
+			text-align: center;
 		}
 	}
 	.single__product-price,
@@ -122,13 +126,12 @@ const Section = styled.section`
 		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 	}
 
+	.single__product-price {
+		white-space: nowrap;
+	}
+
 	.singleProduct__details {
 		justify-content: space-evenly;
-
-		@media (min-width: 768px) {
-			height: 100%;
-			/* height: 50%; */
-		}
 
 		.singleProduct__bottomRight {
 			min-width: 50%;
@@ -139,7 +142,6 @@ const Section = styled.section`
 			box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
 		}
 		.singleProduct-description {
-			/* flex: 1; */
 			line-height: 1.5rem;
 			font-size: 14px;
 		}
@@ -147,6 +149,19 @@ const Section = styled.section`
 		.singleProduct__cart {
 			color: var(--pry-clr-1);
 			font-size: 20px;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.singleProduct__details,
+		.singleProduct__imgWrap {
+			height: 100%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.singleProduct__imgWrap {
+			flex: 1;
 		}
 	}
 `;
