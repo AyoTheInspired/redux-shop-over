@@ -35,7 +35,14 @@
 }
 
 .underline {
-	width: 50%;
+	width: 30%;
+	height: 0.25rem;
+	margin: 0.6rem auto;
+	background: var(--pry-clr-1);
+}
+
+.underline-full {
+	width: 30%;
 	height: 0.25rem;
 	margin: 0.6rem auto;
 	background: var(--pry-clr-1);

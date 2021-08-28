@@ -70,13 +70,38 @@ function Cart() {
 						sm={8}
 						md={5}
 						lg={4}
-						className="cartPage__right"></OrderSummary>
+						className="cartPage__right bg-primary">
+						<h3 className="mb-0 summary__title text-center">
+							Order Summary
+							<div className="underline"></div>
+						</h3>
+
+						<div className="summary__totals p-3">
+							<div className="top flex-btw col-lg-8 mx-auto">
+								<p className="mb-0 total__tag">Total Items: </p>
+								<h5 className="mb-0 total__value"> 8 </h5>
+							</div>
+							<div className="bottom flex-btw col-lg-8 mx-auto mt-3">
+								<p className="mb-0 total__tag">Total Amount: </p>
+								<h5 className="mb-0 total__value">$ 800.00 </h5>
+							</div>
+						</div>
+						<div className="summary__deliveries">
+							<h4 className="delivery__title text-center">
+								Delivery Type
+								<div className="underline"></div>
+							</h4>
+						</div>
+						<div className="summary__promotions"></div>
+						<div className="summary__checkout"></div>
+					</OrderSummary>
 				</Section>
 			</Row>
 		</Container>
 	);
 }
 
+<div className="underline"></div>;
 export default Cart;
 
 const Section = styled.section`
@@ -106,7 +131,6 @@ const CartItemWrap = styled.div`
 		.cartItem__title {
 			font-weight: bold;
 		}
-		/* align-items: center; */
 	}
 
 	.item__qty {
@@ -164,4 +188,7 @@ const CartItemWrap = styled.div`
 	}
 `;
 
-const OrderSummary = styled(Col)``;
+const OrderSummary = styled(Col)`
+	display: flex;
+	flex-direction: column;
+`;
