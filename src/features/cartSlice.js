@@ -11,7 +11,9 @@ export const cartSlice = createSlice({
 
 	reducers: {
 		addToCart: (state, action) => {
-			return { ...state, cart: action.payload };
+			// Get item's data from products array
+			// Item already in cart ? ADJ_QTY : ADD
+			return { ...state, cartItems: [...cartItems, { ...item, qty: 1 }] };
 		},
 
 		removeFromCart: (state, action) => {},
