@@ -1,13 +1,24 @@
-import { IconButton } from "@material-ui/core";
 import { AddCircle, DeleteForever, RemoveCircle } from "@material-ui/icons";
-import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { selectCart } from "../features/shopSlice";
+import Select from "react-select";
 
 function Cart() {
 	const cartItems = useSelector(selectCart);
+	const [deliveryOption, setDeliveryOption] = useState("primary");
+
+	const options = [
+		{ value: "chocolate", label: "Chocolate" },
+		{ value: "strawberry", label: "Strawberry" },
+		{ value: "vanilla", label: "Vanilla" },
+	];
+
+	const handleDeliveryChange = (e) => {
+		setDeliveryOption(e.target.value);
+	};
 
 	return (
 		<Container>
@@ -66,11 +77,7 @@ function Cart() {
 							);
 						})}
 					</Col>
-					<OrderSummary
-						sm={8}
-						md={5}
-						lg={4}
-						className="cartPage__right bg-primary">
+					<OrderSummary sm={8} md={5} lg={4} className="cartPage__right">
 						<h3 className="mb-0 summary__title text-center">
 							Order Summary
 							<div className="underline"></div>
@@ -87,10 +94,25 @@ function Cart() {
 							</div>
 						</div>
 						<div className="summary__deliveries">
-							<h4 className="delivery__title text-center">
-								Delivery Type
+							<h5 className="delivery__title text-center">
+								Additional Information
 								<div className="underline"></div>
-							</h4>
+							</h5>
+
+							<div className="selector__wrap col-lg-8">
+								<CustomSelect
+									value={deliveryOption}
+									defaultValue={deliveryOption}
+									onChange={handleDeliveryChange}
+									options={options}
+								/>
+							</div>
+
+							{/* <DropdownButton title="Select">
+								<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+								<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+								<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+							</DropdownButton> */}
 						</div>
 						<div className="summary__promotions"></div>
 						<div className="summary__checkout"></div>
@@ -191,4 +213,10 @@ const CartItemWrap = styled.div`
 const OrderSummary = styled(Col)`
 	display: flex;
 	flex-direction: column;
+`;
+
+const CustomSelect = styled(Select)`
+	:active {
+		border: 1px solid red !important;
+	}
 `;
