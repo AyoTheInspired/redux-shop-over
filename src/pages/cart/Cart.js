@@ -11,85 +11,83 @@ function Cart() {
 	const cartItems = useSelector(selectCart);
 	const [deliveryOption, setDeliveryOption] = useState("primary");
 
-	const options = [
-		{ value: "chocolate", label: "Chocolate" },
-		{ value: "strawberry", label: "Strawberry" },
-		{ value: "vanilla", label: "Vanilla" },
-	];
-
-	const handleDeliveryChange = (e) => {
-		setDeliveryOption(e.target.value);
-	};
-
 	return (
 		<Container>
 			<Row>
 				<Section className="flexed flex-wrap py-4 mt-5">
-					<Col sm={8} md={5} lg={6} className="cartPage__left">
-						{cartItems.map((item) => {
-							const { image, title, price, id, qty } = item;
+					<div className="wrapper col-lg-9 bg-success mx-auto">
+						<Col sm={8} md={5} lg={5} className="cartPage__left">
+							{cartItems.map((item) => {
+								const { image, title, price, id, qty } = item;
 
-							return (
-								<CartItemWrap key={id} className="flexed my-4 col-lg-8">
-									<div className="cartItem__imageWrap">
-										<img
-											src={image}
-											alt={title}
-											width="70"
-											className="cartItem__image"
-										/>
-									</div>
-									<div className="cartItem__titleWrap">
-										<div className="itemTitle__top mb-3">
-											<p className="mb-0 text-center cartItem__title mr-2">
-												{title}
-											</p>
+								return (
+									<CartItemWrap key={id} className="flexed my-4">
+										<div className="cartItem__imageWrap">
+											<img
+												src={image}
+												alt={title}
+												width="70"
+												className="cartItem__image"
+											/>
 										</div>
-										<div className="itemTitle__bottom">
-											<p className="mb-0 itemQtyTag text-center">Quantity</p>
-											<div className="qty__buttons flexed mt-3">
-												<RemoveCircle className="adjuster" />
-												<p className="item__qty mb-0 mx-3">{qty}</p>
-												<AddCircle className="adjuster" />
+										<div className="cartItem__titleWrap">
+											<div className="itemTitle__top mb-3">
+												<p className="mb-0 text-center cartItem__title mr-2">
+													{title}
+												</p>
+											</div>
+											<div className="itemTitle__bottom">
+												<p className="mb-0 itemQtyTag text-center">Quantity</p>
+												<div className="qty__buttons flexed mt-3">
+													<RemoveCircle className="adjuster" />
+													<p className="item__qty mb-0 mx-3">{qty}</p>
+													<AddCircle className="adjuster" />
+												</div>
 											</div>
 										</div>
-									</div>
-									<div className="cartItem__priceWrap">
-										<div className="item__price">
-											<p className="mb-0 price__value p-2 text-center">
-												$ {price}{" "}
-											</p>
-										</div>
+										<div className="cartItem__priceWrap">
+											<div className="item__price">
+												<p className="mb-0 price__value p-2 text-center">
+													$ {price}{" "}
+												</p>
+											</div>
 
-										<div className="item__total flex-col my-3 p-2">
-											<p className="mb-0 total__tag">Total Cost</p>
-											<p className="total__value">$ {price * qty} </p>
-										</div>
+											<div className="item__total flex-col my-3 p-2">
+												<p className="mb-0 total__tag">Total Cost</p>
+												<p className="total__value">$ {price * qty} </p>
+											</div>
 
-										<div className="item__remove flexed p-2">
-											{/* <IconButton> */}
-											<DeleteForever className="delete__icon" />
+											<div className="item__remove flexed p-2">
+												<DeleteForever className="delete__icon" />
 
-											<p className="remove mb-0">Remove</p>
-											{/* </IconButton> */}
+												<p className="remove mb-0">Remove</p>
+											</div>
 										</div>
-									</div>
-								</CartItemWrap>
-							);
-						})}
-					</Col>
-					<OrderSummary />
+									</CartItemWrap>
+								);
+							})}
+						</Col>
+						<OrderSummary />
+					</div>
 				</Section>
 			</Row>
 		</Container>
 	);
 }
 
-<div className="underline"></div>;
+{
+	/* <div className="underline"></div>; */
+}
 export default Cart;
 
 const Section = styled.section`
 	background: #d4d4d4;
+
+	.wrapper {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+	}
 `;
 
 const CartItemWrap = styled.div`
@@ -97,6 +95,7 @@ const CartItemWrap = styled.div`
 	padding: 10px 15px;
 	border-radius: 10px;
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+	/* width: 60%; */
 
 	.itemQtyTag {
 		padding: 5px 15px;
