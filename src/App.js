@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProductListing from "./components/ProductListing";
 import ProductDetail from "./pages/ProductDetail";
 import Navigation from "./components/Navigation";
-import Cart from "./pages/Cart";
+import Cart from "./pages/cart/Cart";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

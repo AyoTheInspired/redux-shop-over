@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { selectCart } from "../features/shopSlice";
+import { selectCart } from "../../features/shopSlice";
 import Select from "react-select";
+import OrderSummary from "./OrderSummary";
 
 function Cart() {
 	const cartItems = useSelector(selectCart);
@@ -77,7 +78,9 @@ function Cart() {
 							);
 						})}
 					</Col>
-					<OrderSummary sm={8} md={5} lg={4} className="cartPage__right">
+					<OrderSummary />
+
+					{/* <OrderSummary sm={8} md={5} lg={4} className="cartPage__right">
 						<h3 className="mb-0 summary__title text-center">
 							Order Summary
 							<div className="underline"></div>
@@ -108,15 +111,15 @@ function Cart() {
 								/>
 							</div>
 
-							{/* <DropdownButton title="Select">
+							<DropdownButton title="Select">
 								<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
 								<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
 								<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-							</DropdownButton> */}
+							</DropdownButton>
 						</div>
 						<div className="summary__promotions"></div>
 						<div className="summary__checkout"></div>
-					</OrderSummary>
+					</OrderSummary> */}
 				</Section>
 			</Row>
 		</Container>
@@ -210,10 +213,10 @@ const CartItemWrap = styled.div`
 	}
 `;
 
-const OrderSummary = styled(Col)`
-	display: flex;
-	flex-direction: column;
-`;
+// const OrderSummary = styled(Col)`
+// 	display: flex;
+// 	flex-direction: column;
+// `;
 
 const CustomSelect = styled(Select)`
 	:active {
