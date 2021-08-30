@@ -1,27 +1,27 @@
 import { AddCircle, DeleteForever, RemoveCircle } from "@material-ui/icons";
 import React, { useState } from "react";
-import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { selectCart } from "../../features/shopSlice";
-import Select from "react-select";
 import OrderSummary from "./OrderSummary";
 
 function Cart() {
 	const cartItems = useSelector(selectCart);
-	const [deliveryOption, setDeliveryOption] = useState("primary");
 
 	return (
 		<Container>
 			<Row>
 				<Section className="flexed flex-wrap py-4 mt-5">
-					<div className="wrapper col-lg-9 bg-success mx-auto">
-						<Col sm={8} md={5} lg={5} className="cartPage__left">
+					<div className="wrapper flexed flex-wrap col-lg-9 mx-auto px-4">
+						<Col sm={8} md={5} lg={6} className="cartPage__left">
 							{cartItems.map((item) => {
 								const { image, title, price, id, qty } = item;
 
 								return (
-									<CartItemWrap key={id} className="flexed my-4">
+									<CartItemWrap
+										key={id}
+										className="d-flex align-items-center justify-content-between my-4">
 										<div className="cartItem__imageWrap">
 											<img
 												src={image}
@@ -76,7 +76,6 @@ function Cart() {
 }
 
 {
-	/* <div className="underline"></div>; */
 }
 export default Cart;
 
@@ -95,7 +94,6 @@ const CartItemWrap = styled.div`
 	padding: 10px 15px;
 	border-radius: 10px;
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
-	/* width: 60%; */
 
 	.itemQtyTag {
 		padding: 5px 15px;
@@ -168,16 +166,5 @@ const CartItemWrap = styled.div`
 				background: red;
 			}
 		}
-	}
-`;
-
-// const OrderSummary = styled(Col)`
-// 	display: flex;
-// 	flex-direction: column;
-// `;
-
-const CustomSelect = styled(Select)`
-	:active {
-		border: 1px solid red !important;
 	}
 `;
