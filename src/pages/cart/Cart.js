@@ -79,47 +79,6 @@ function Cart() {
 						})}
 					</Col>
 					<OrderSummary />
-
-					{/* <OrderSummary sm={8} md={5} lg={4} className="cartPage__right">
-						<h3 className="mb-0 summary__title text-center">
-							Order Summary
-							<div className="underline"></div>
-						</h3>
-
-						<div className="summary__totals p-3">
-							<div className="top flex-btw col-lg-8 mx-auto">
-								<p className="mb-0 total__tag">Total Items: </p>
-								<h5 className="mb-0 total__value"> 8 </h5>
-							</div>
-							<div className="bottom flex-btw col-lg-8 mx-auto mt-3">
-								<p className="mb-0 total__tag">Total Amount: </p>
-								<h5 className="mb-0 total__value">$ 800.00 </h5>
-							</div>
-						</div>
-						<div className="summary__deliveries">
-							<h5 className="delivery__title text-center">
-								Additional Information
-								<div className="underline"></div>
-							</h5>
-
-							<div className="selector__wrap col-lg-8">
-								<CustomSelect
-									value={deliveryOption}
-									defaultValue={deliveryOption}
-									onChange={handleDeliveryChange}
-									options={options}
-								/>
-							</div>
-
-							<DropdownButton title="Select">
-								<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-								<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-								<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-							</DropdownButton>
-						</div>
-						<div className="summary__promotions"></div>
-						<div className="summary__checkout"></div>
-					</OrderSummary> */}
 				</Section>
 			</Row>
 		</Container>

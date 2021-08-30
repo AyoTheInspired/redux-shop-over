@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Col } from "react-bootstrap";
 
 function OrderSummary() {
+	const [deliveryType, setDeliveryType] = useState("plans");
+
 	return (
 		<StyledCol sm={8} md={5} lg={4} className="cartPage__right">
 			<h3 className="mb-0 summary__title text-center">
@@ -28,15 +30,23 @@ function OrderSummary() {
 			</div>
 			<div className="summary__promotions">
 				<div className="delivery__wrap">
-					<select className="w-50">
-						<option value="grapefruit">Grapefruit</option>
-						<option value="lime">Lime</option>
-						<option selected value="coconut">
-							Coconut
-						</option>
-						<option value="mango">Mango</option>
-					</select>
+					<label className="w-75">
+						<p className="my-2 delivery__label">Select a Delivery Type</p>
+						<select
+							className="w-75"
+							value={deliveryType}
+							onChange={(e) => {
+								setDeliveryType(e.target.value);
+							}}>
+							<option value="grapefruit">Standard - $ 200</option>
+							<option value="lime">Premium - $ 400</option>
+							{/* <option value="coconut">Coconut</option>
+							<option value="mango">Mango</option> */}
+						</select>
+					</label>
 				</div>
+
+				<div className="promotions__wrap"></div>
 			</div>
 			<div className="summary__checkout"></div>
 		</StyledCol>
