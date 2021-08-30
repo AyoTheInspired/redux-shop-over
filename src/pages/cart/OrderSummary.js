@@ -24,12 +24,12 @@ function OrderSummary() {
 				</div>
 			</div>
 			<div className="summary__deliveries">
-				<h5 className="delivery__title text-center">
+				<h5 className=" mb-0 delivery__title text-center">
 					Additional Information
 					<div className="underline"></div>
 				</h5>
 			</div>
-			<div className="delivery__wrap mb-5 mt-3">
+			<div className="delivery__wrap mb-4 mt-3">
 				<label className="w-75">
 					<p className="my-2 delivery__label">Select Delivery Type</p>
 					<select
@@ -53,8 +53,14 @@ function OrderSummary() {
 					onChange={(e) => setPromoCode(e.target.value)}
 				/>
 				<button className="promo__apply d-block my-3 px-3">Apply</button>
+				<div className="underline-full"></div>
 			</div>
-			<div className="summary__checkout"></div>
+			<div className="summary__checkout flex-btw p-3">
+				<p className="total__tag mb-0">Total</p>
+
+				<h5 className="total__value mb-0">$ 800.50</h5>
+			</div>
+			<button className="checkout__btn w-75 mx-auto mt-3">Checkout</button>
 		</StyledCol>
 	);
 }
@@ -66,5 +72,5 @@ const StyledCol = styled(Col)`
 	flex-direction: column;
 	background: #fff;
 	padding: 20px;
-	border-radius: 5px;
+	border-radius: 7px;
 `;
