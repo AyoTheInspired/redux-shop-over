@@ -89,6 +89,7 @@ export const {
 	removeFromCart,
 	retrieveItems,
 	increaseQuantity,
+	decreaseQuantity,
 	adjustQuantity,
 } = shopSlice.actions;
 

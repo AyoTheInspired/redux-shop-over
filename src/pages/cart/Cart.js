@@ -10,6 +10,7 @@ import {
 	increaseQuantity,
 	addToCart,
 	retrieveItems,
+	decreaseQuantity,
 } from "../../features/shopSlice";
 import OrderSummary from "./OrderSummary";
 
@@ -63,16 +64,20 @@ function Cart() {
 												<div className="qty__buttons flexed mt-3">
 													<RemoveCircle
 														className="adjuster"
-														onClick={() => {}}
+														onClick={() => {
+															if (item.qty === 1) {
+																return;
+															} else {
+																dispatch(decreaseQuantity(item));
+															}
+														}}
 													/>
 													<p className="item__qty mb-0 mx-3">{qty} </p>
 													<AddCircle
 														className="adjuster"
 														onClick={() => {
-															console.log(qty);
 															setItemQty((prevQty) => prevQty + 1);
 															dispatch(increaseQuantity(item));
-															console.log(qty);
 														}}
 													/>
 												</div>
