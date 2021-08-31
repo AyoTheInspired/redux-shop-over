@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { selectCart } from "../../features/shopSlice";
 
 function OrderSummary() {
 	const [deliveryType, setDeliveryType] = useState(null);
 	const [promoCode, setPromoCode] = useState(null);
+	const cart = useSelector(selectCart);
+	const [totalPrice, setTotalPrice] = useState(0);
+	const [totalItems, setTotalItems] = useState(0);
+
+	useEffect(() => {
+		let items = 0;
+		let price = 0;
+
+		cart.forEach((item) => {
+			items += item.qty;
+			price += item.qty * item.price;
+		});
+
+		setTotalPrice(price);
+		setTotalItems(items);
+	}, [cart, totalPrice, setTotalPrice, totalItems, setTotalItems]);
 
 	return (
 		<StyledCol sm={10} md={5} lg={4} className="cartPage__right">
@@ -16,11 +34,11 @@ function OrderSummary() {
 			<div className="summary__totals p-3 mt-2 mb-4">
 				<div className="top flex-btw ">
 					<p className="mb-0 total__tag">Total Items: </p>
-					<h5 className="mb-0 total__value"> 8 </h5>
+					<h5 className="mb-0 total__value"> {totalItems} </h5>
 				</div>
 				<div className="bottom flex-btw mt-3">
 					<p className="mb-0 total__tag">Total Amount: </p>
-					<h5 className="mb-0 total__value">$ 800.00 </h5>
+					<h5 className="mb-0 total__value">$ {totalPrice.toFixed(2)} </h5>
 				</div>
 			</div>
 			<div className="summary__deliveries">

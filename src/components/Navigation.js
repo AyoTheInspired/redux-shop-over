@@ -28,7 +28,7 @@ function Navigation() {
 				</Link>
 			</div>
 			<p className="mb-0 text-center text-white bg-danger text-uppercase px-4 py-2 col-6">
-				NB: App is still in build.
+				NB: App is still in build
 			</p>
 			<div className="nav__right">
 				<Link to="/cart">
