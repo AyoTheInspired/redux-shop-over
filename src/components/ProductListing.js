@@ -39,9 +39,10 @@ const ProductListing = () => {
 								dispatch(closeToast());
 							}}
 							show={itemAdded}
-							delay={3000}
-							autohide={true}>
-							<Toast.Header>
+							// delay={3000}
+							// autohide={true}
+						>
+							{/* <Toast.Header>
 								<img
 									src="holder.js/20x20?text=%20"
 									className="rounded me-2"
@@ -49,8 +50,8 @@ const ProductListing = () => {
 								/>
 								<strong className="me-auto">Bootstrap</strong>
 								<small>11 mins ago</small>
-							</Toast.Header>
-							<Toast.Body>
+							</Toast.Header> */}
+							<Toast.Body className="toast__body">
 								Woohoo, you're reading this text in a Toast!
 							</Toast.Body>
 						</Toast>
