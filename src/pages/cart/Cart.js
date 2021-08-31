@@ -12,7 +12,7 @@ function Cart() {
 	return (
 		<Container>
 			<Row>
-				<Section className="flexed flex-wrap py-4 mt-5">
+				<Section className="d-flex justify-content-center align-items-start flex-wrap py-4 mt-5">
 					<div className="wrapper flexed flex-wrap col-lg-9 mx-auto px-4">
 						<Col sm={8} md={5} lg={6} className="cartPage__left">
 							{cartItems.map((item) => {
