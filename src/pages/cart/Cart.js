@@ -16,20 +16,20 @@ import OrderSummary from "./OrderSummary";
 function Cart() {
 	const cartItems = useSelector(selectCart);
 	const dispatch = useDispatch();
-	const [itemQty, setItemQty] = useState(1);
+	const [itemQty, setItemQty] = useState(5);
 
 	useEffect(() => {
 		const data = localStorage.getItem("cart-items");
 		const parsedData = JSON.parse(data);
 
 		if (parsedData) {
-			dispatch(retrieveItems(parsedData));
+			// dispatch(retrieveItems(parsedData));
 		}
 	}, []);
 
 	useEffect(() => {
 		localStorage.setItem("cart-items", JSON.stringify(cartItems));
-	}, [cartItems, addToCart]);
+	}, [cartItems]);
 
 	return (
 		<Container>
@@ -59,15 +59,21 @@ function Cart() {
 												</p>
 											</div>
 											<div className="itemTitle__bottom">
-												<p className="mb-0 itemQtyTag text-center">
-													Quantity {itemQty}
-												</p>
+												<p className="mb-0 itemQtyTag text-center">Quantity</p>
 												<div className="qty__buttons flexed mt-3">
-													<RemoveCircle className="adjuster" />
+													<RemoveCircle
+														className="adjuster"
+														onClick={() => {}}
+													/>
 													<p className="item__qty mb-0 mx-3">{qty} </p>
 													<AddCircle
 														className="adjuster"
-														onClick={() => dispatch(increaseQuantity(id))}
+														onClick={() => {
+															console.log(qty);
+															setItemQty((prevQty) => prevQty + 1);
+															dispatch(increaseQuantity(item));
+															console.log(qty);
+														}}
 													/>
 												</div>
 											</div>

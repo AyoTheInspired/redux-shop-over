@@ -57,25 +57,24 @@ export const shopSlice = createSlice({
 		retrieveItems: (state, action) => {
 			return {
 				...state,
-				cart: action.payload,
+				cart: [...state.cart, ...action.payload],
 			};
 		},
 
-		adjustQuantity: (state, action) => {
-			return {
-				...state,
-				cart: state.cart.map((item) =>
-					item.id === action.payload.id
-						? { ...item, qty: action.payload.qty }
-						: item
-				),
-			};
-		},
 		increaseQuantity: (state, action) => {
 			return {
 				...state,
 				cart: state.cart.map((item) =>
-					item === action.payload ? { ...item, qty: 5 } : item
+					item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item
+				),
+			};
+		},
+
+		decreaseQuantity: (state, action, itemID, value) => {
+			return {
+				...state,
+				cart: state.cart.map((item) =>
+					item.id === action.payload.id ? { ...item, qty: item.qty - 1 } : item
 				),
 			};
 		},
@@ -90,6 +89,7 @@ export const {
 	removeFromCart,
 	retrieveItems,
 	increaseQuantity,
+	adjustQuantity,
 } = shopSlice.actions;
 
 // export const selectState = (state) => state.shop;
