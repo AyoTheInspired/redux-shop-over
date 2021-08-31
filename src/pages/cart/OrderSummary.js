@@ -106,6 +106,11 @@ const StyledCol = styled(Col)`
 
 	.total__tag {
 		font-size: 15px;
+		white-space: nowrap;
+	}
+
+	.total__value {
+		white-space: nowrap;
 	}
 
 	.promo__apply,

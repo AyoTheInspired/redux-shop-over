@@ -16,7 +16,7 @@ const ProductListing = () => {
 				alert("Err", err);
 			});
 
-		console.log(response?.data);
+		// console.log(response?.data);
 		dispatch(setProducts(response?.data));
 	};
 

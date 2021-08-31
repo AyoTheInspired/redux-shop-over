@@ -1,14 +1,35 @@
 import { AddCircle, DeleteForever, RemoveCircle } from "@material-ui/icons";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { removeFromCart, selectCart } from "../../features/shopSlice";
+import {
+	removeFromCart,
+	selectCart,
+	adjustQuantity,
+	increaseQuantity,
+	addToCart,
+	retrieveItems,
+} from "../../features/shopSlice";
 import OrderSummary from "./OrderSummary";
 
 function Cart() {
 	const cartItems = useSelector(selectCart);
 	const dispatch = useDispatch();
+	const [itemQty, setItemQty] = useState(1);
+
+	useEffect(() => {
+		const data = localStorage.getItem("cart-items");
+		const parsedData = JSON.parse(data);
+
+		if (parsedData) {
+			dispatch(retrieveItems(parsedData));
+		}
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem("cart-items", JSON.stringify(cartItems));
+	}, [cartItems, addToCart]);
 
 	return (
 		<Container>
@@ -38,11 +59,16 @@ function Cart() {
 												</p>
 											</div>
 											<div className="itemTitle__bottom">
-												<p className="mb-0 itemQtyTag text-center">Quantity</p>
+												<p className="mb-0 itemQtyTag text-center">
+													Quantity {itemQty}
+												</p>
 												<div className="qty__buttons flexed mt-3">
 													<RemoveCircle className="adjuster" />
-													<p className="item__qty mb-0 mx-3">{qty}</p>
-													<AddCircle className="adjuster" />
+													<p className="item__qty mb-0 mx-3">{qty} </p>
+													<AddCircle
+														className="adjuster"
+														onClick={() => dispatch(increaseQuantity(id))}
+													/>
 												</div>
 											</div>
 										</div>

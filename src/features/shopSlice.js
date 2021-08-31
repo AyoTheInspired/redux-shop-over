@@ -54,13 +54,28 @@ export const shopSlice = createSlice({
 			};
 		},
 
+		retrieveItems: (state, action) => {
+			return {
+				...state,
+				cart: action.payload,
+			};
+		},
+
 		adjustQuantity: (state, action) => {
 			return {
 				...state,
 				cart: state.cart.map((item) =>
-					item.id === item.payload.id
+					item.id === action.payload.id
 						? { ...item, qty: action.payload.qty }
 						: item
+				),
+			};
+		},
+		increaseQuantity: (state, action) => {
+			return {
+				...state,
+				cart: state.cart.map((item) =>
+					item === action.payload ? { ...item, qty: 5 } : item
 				),
 			};
 		},
@@ -73,6 +88,8 @@ export const {
 	removeSelectedProduct,
 	addToCart,
 	removeFromCart,
+	retrieveItems,
+	increaseQuantity,
 } = shopSlice.actions;
 
 // export const selectState = (state) => state.shop;
