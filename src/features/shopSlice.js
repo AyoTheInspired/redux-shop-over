@@ -4,6 +4,8 @@ const initialState = {
 	products: [],
 	selectedProduct: [],
 	cart: [],
+	isLoading: false,
+	itemAdded: false,
 };
 
 export const shopSlice = createSlice({
@@ -23,6 +25,10 @@ export const shopSlice = createSlice({
 			return { ...state, selectedProduct: [] };
 		},
 
+		closeToast: (state) => {
+			return { ...state, itemAdded: false };
+		},
+
 		// Cart Actions
 
 		addToCart: (state, action) => {
@@ -37,6 +43,7 @@ export const shopSlice = createSlice({
 
 			return {
 				...state,
+				itemAdded: true,
 				cart: inCart
 					? state.cart.map((item) =>
 							item.id === action.payload.id
@@ -70,7 +77,7 @@ export const shopSlice = createSlice({
 			};
 		},
 
-		decreaseQuantity: (state, action, itemID, value) => {
+		decreaseQuantity: (state, action) => {
 			return {
 				...state,
 				cart: state.cart.map((item) =>
@@ -90,7 +97,7 @@ export const {
 	retrieveItems,
 	increaseQuantity,
 	decreaseQuantity,
-	adjustQuantity,
+	closeToast,
 } = shopSlice.actions;
 
 // export const selectState = (state) => state.shop;
@@ -100,5 +107,7 @@ export const selectSetProducts = (state) => state.shop.products;
 export const selectSelectedProduct = (state) => state.shop.selectedProduct;
 
 export const selectCart = (state) => state.shop.cart;
+
+export const selectItemAdded = (state) => state.shop.itemAdded;
 
 export default shopSlice.reducer;

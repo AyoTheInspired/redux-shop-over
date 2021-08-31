@@ -19,6 +19,7 @@ function ProductComponent() {
 
 	return (
 		<>
+			{/* <h4 className="d-block test-text">SHOW THIS FIRST AND FOREMOST</h4> */}
 			{products.map((product) => {
 				const {
 					id,
