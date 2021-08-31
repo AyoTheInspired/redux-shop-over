@@ -38,7 +38,9 @@ function OrderSummary() {
 				</div>
 				<div className="bottom flex-btw mt-3">
 					<p className="mb-0 total__tag">Total Amount: </p>
-					<h5 className="mb-0 total__value">$ {totalPrice.toFixed(2)} </h5>
+					<h5 className="mb-0 total__value fw-bold">
+						$ {totalPrice.toFixed(2)}{" "}
+					</h5>
 				</div>
 			</div>
 			<div className="summary__deliveries">
@@ -76,7 +78,7 @@ function OrderSummary() {
 			<div className="summary__checkout flex-btw p-3 mt-2">
 				<p className="total__tag mb-0 ">Total</p>
 
-				<h5 className="total__value mb-0">$ 800.50</h5>
+				<h5 className="total__value mb-0 fw-bold">$ {totalPrice.toFixed(2)}</h5>
 			</div>
 			<button className="checkout__btn w-75 mx-auto mt-3">Checkout</button>
 		</StyledCol>

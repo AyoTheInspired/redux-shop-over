@@ -1,13 +1,14 @@
 import { AddCircle, DeleteForever, RemoveCircle } from "@material-ui/icons";
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { selectCart } from "../../features/shopSlice";
+import { removeFromCart, selectCart } from "../../features/shopSlice";
 import OrderSummary from "./OrderSummary";
 
 function Cart() {
 	const cartItems = useSelector(selectCart);
+	const dispatch = useDispatch();
 
 	return (
 		<Container>
@@ -57,7 +58,9 @@ function Cart() {
 												<p className="total__value">$ {price * qty} </p>
 											</div>
 
-											<div className="item__remove flexed p-2">
+											<div
+												className="item__remove flexed p-2"
+												onClick={() => dispatch(removeFromCart(id))}>
 												<DeleteForever className="delete__icon" />
 
 												<p className="remove mb-0">Remove</p>
