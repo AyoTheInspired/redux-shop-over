@@ -6,10 +6,10 @@ import styled from "styled-components";
 import {
 	removeFromCart,
 	selectCart,
-	adjustQuantity,
+	// adjustQuantity,
 	increaseQuantity,
-	addToCart,
-	retrieveItems,
+	// addToCart,
+	// retrieveItems,
 	decreaseQuantity,
 } from "../../features/shopSlice";
 import OrderSummary from "./OrderSummary";
@@ -17,7 +17,7 @@ import OrderSummary from "./OrderSummary";
 function Cart() {
 	const cartItems = useSelector(selectCart);
 	const dispatch = useDispatch();
-	const [itemQty, setItemQty] = useState(5);
+	// const [itemQty, setItemQty] = useState(5);
 
 	useEffect(() => {
 		const data = localStorage.getItem("cart-items");
@@ -65,8 +65,9 @@ function Cart() {
 													<RemoveCircle
 														className="adjuster"
 														onClick={() => {
-															if (item.qty === 1) {
-																return;
+															if (item.qty <= 1) {
+																// return;
+																dispatch(removeFromCart(item.id));
 															} else {
 																dispatch(decreaseQuantity(item));
 															}
@@ -76,7 +77,6 @@ function Cart() {
 													<AddCircle
 														className="adjuster"
 														onClick={() => {
-															setItemQty((prevQty) => prevQty + 1);
 															dispatch(increaseQuantity(item));
 														}}
 													/>

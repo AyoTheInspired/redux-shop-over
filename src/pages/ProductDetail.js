@@ -5,15 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
 import {
+	addToCart,
 	removeSelectedProduct,
 	selectedProduct,
 	selectSelectedProduct,
 } from "../features/shopSlice";
 import LabelIcon from "@material-ui/icons/Label";
-import {
-	AddShoppingCartRounded,
-	ShoppingCartOutlined,
-} from "@material-ui/icons";
+import { AddShoppingCartRounded } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 
 function ProductDetail() {
@@ -79,7 +77,12 @@ function ProductDetail() {
 							</p>
 
 							<IconButton>
-								<AddShoppingCartRounded className="singleProduct__cart" />
+								<AddShoppingCartRounded
+									className="singleProduct__cart"
+									onClick={() => {
+										dispatch(addToCart(singleProduct));
+									}}
+								/>
 							</IconButton>
 						</div>
 					</Col>
