@@ -24,7 +24,6 @@ function ProductDetail() {
 			.get(`https://fakestoreapi.com/products/${productId}`)
 			.catch((err) => {
 				alert(err);
-				console.log(err);
 			});
 		dispatch(selectedProduct(response?.data));
 	};
