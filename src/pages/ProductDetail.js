@@ -10,22 +10,9 @@ import {
 	selectedProduct,
 	selectSelectedProduct,
 } from "../features/shopSlice";
-import LabelIcon from "@material-ui/icons/Label";
 import { AddShoppingCartRounded } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
-import {
-	ChasingDots,
-	Circle,
-	CubeGrid,
-	DoubleBounce,
-	FadingCircle,
-	FoldingCube,
-	Pulse,
-	RotatingPlane,
-	ThreeBounce,
-	WanderingCubes,
-	Wave,
-} from "better-react-spinkit";
+import { FadingCircle } from "better-react-spinkit";
 
 function ProductDetail() {
 	const { productId } = useParams();
@@ -61,7 +48,6 @@ function ProductDetail() {
 								md={5}
 								lg={5}
 								className="singleProduct__imgWrap py-2 px-3 d-flex flex-column justify-content-between">
-								{/* <div className="img__wrapper"></div> */}
 								<img
 									src={singleProduct.image}
 									alt={singleProduct.title}
