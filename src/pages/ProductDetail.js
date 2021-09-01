@@ -13,6 +13,19 @@ import {
 import LabelIcon from "@material-ui/icons/Label";
 import { AddShoppingCartRounded } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
+import {
+	ChasingDots,
+	Circle,
+	CubeGrid,
+	DoubleBounce,
+	FadingCircle,
+	FoldingCube,
+	Pulse,
+	RotatingPlane,
+	ThreeBounce,
+	WanderingCubes,
+	Wave,
+} from "better-react-spinkit";
 
 function ProductDetail() {
 	const { productId } = useParams();
@@ -55,7 +68,7 @@ function ProductDetail() {
 									className="mx-auto m-2 singleProduct__img"
 								/>
 								<div className="singleProduct__bottom mt-3">
-									<p className="mb-0 single__product-title">
+									<p className="mb-0 single__product-title mr-2">
 										{singleProduct.title}{" "}
 									</p>
 
@@ -90,7 +103,12 @@ function ProductDetail() {
 							</Col>
 						</>
 					) : (
-						<h2>Loading...</h2>
+						<div className="flex-col">
+							<FadingCircle size={100} color="#ddd" />
+							<h3 className="mt-5 mb-0 py-3 text-white text-center">
+								Please Wait
+							</h3>
+						</div>
 					)}
 				</Section>
 			</Row>
