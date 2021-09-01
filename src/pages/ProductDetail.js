@@ -41,51 +41,57 @@ function ProductDetail() {
 		<Container>
 			<Row>
 				<Section className="flexed flex-wrap py-5 mt-5">
-					<Col
-						sm={10}
-						md={5}
-						lg={5}
-						className="singleProduct__imgWrap py-2 px-3 d-flex flex-column justify-content-between">
-						{/* <div className="img__wrapper"></div> */}
-						<img
-							src={singleProduct.image}
-							alt={singleProduct.title}
-							className="mx-auto m-2 singleProduct__img"
-						/>
-						<div className="singleProduct__bottom mt-3">
-							<p className="mb-0 single__product-title">
-								{singleProduct.title}{" "}
-							</p>
-
-							<p className="mb-0 single__product-price">
-								$ {singleProduct.price}
-							</p>
-						</div>
-					</Col>
-					<Col
-						sm={10}
-						md={5}
-						lg={5}
-						className="singleProduct__details p-2 d-flex flex-column">
-						<p className="mb-3 px-3 text-center flexed text-capitalize singleProduct-description">
-							{singleProduct.description}{" "}
-						</p>
-
-						<div className="flexed singleProduct__bottomRight mx-auto p-2">
-							<p className="singleProduct-category mb-0 text-capitalize">
-								{singleProduct.category}
-							</p>
-
-							<IconButton>
-								<AddShoppingCartRounded
-									className="singleProduct__cart"
-									onClick={() => {
-										dispatch(addToCart(singleProduct));
-									}}
+					{singleProduct.length !== 0 ? (
+						<>
+							<Col
+								sm={10}
+								md={5}
+								lg={5}
+								className="singleProduct__imgWrap py-2 px-3 d-flex flex-column justify-content-between">
+								{/* <div className="img__wrapper"></div> */}
+								<img
+									src={singleProduct.image}
+									alt={singleProduct.title}
+									className="mx-auto m-2 singleProduct__img"
 								/>
-							</IconButton>
-						</div>
-					</Col>
+								<div className="singleProduct__bottom mt-3">
+									<p className="mb-0 single__product-title">
+										{singleProduct.title}{" "}
+									</p>
+
+									<p className="mb-0 single__product-price">
+										$ {singleProduct.price}
+									</p>
+								</div>
+							</Col>
+							<Col
+								sm={10}
+								md={5}
+								lg={5}
+								className="singleProduct__details p-2 d-flex flex-column">
+								<p className="mb-3 px-3 text-center flexed text-capitalize singleProduct-description">
+									{singleProduct.description}{" "}
+								</p>
+
+								<div className="flexed singleProduct__bottomRight mx-auto p-2">
+									<p className="singleProduct-category mb-0 text-capitalize">
+										{singleProduct.category}
+									</p>
+
+									<IconButton>
+										<AddShoppingCartRounded
+											className="singleProduct__cart"
+											onClick={() => {
+												dispatch(addToCart(singleProduct));
+											}}
+										/>
+									</IconButton>
+								</div>
+							</Col>
+						</>
+					) : (
+						<h2>Loading...</h2>
+					)}
 				</Section>
 			</Row>
 		</Container>

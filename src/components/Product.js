@@ -24,18 +24,6 @@ function ProductComponent() {
 	const truncate = (text, number) =>
 		text.length > number ? `${text.substring(0, number)}...` : text;
 
-	// useEffect(() => {
-	// 	const parsedData = JSON.parse(localStorage.getItem("cart-items"));
-
-	// 	if (parsedData) {
-	// 		dispatch(retrieveItems(parsedData));
-	// 	}
-	// }, []);
-
-	// useEffect(() => {
-	// 	localStorage.setItem("cart-items", JSON.stringify(cart));
-	// }, [addToCart, cart]);
-
 	return (
 		<Container>
 			<Row>
@@ -49,15 +37,6 @@ function ProductComponent() {
 							show={itemAdded}
 							delay={3000}
 							autohide={true}>
-							{/* <Toast.Header>
-								<img
-									src="holder.js/20x20?text=%20"
-									className="rounded me-2"
-									alt=""
-								/>
-								<strong className="me-auto">Bootstrap</strong>
-								<small>11 mins ago</small>
-							</Toast.Header> */}
 							<Toast.Body className="toast__body">
 								<p className="mb-0 cart__alert">
 									Item has been added to cart.{" "}
@@ -68,7 +47,7 @@ function ProductComponent() {
 				)}
 
 				<Section className="flexed flex-wrap py-3">
-					{products.map((product) => {
+					{products?.map((product) => {
 						const {
 							id,
 							title,
