@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import StarRatingComponent from "react-star-rating-component";
 import { addToCart } from "../features/shopSlice";
+import FadingCircle from "better-react-spinkit/dist/FadingCircle";
 
 function ProductComponent() {
 	const products = useSelector(selectSetProducts);
@@ -47,62 +48,71 @@ function ProductComponent() {
 				)}
 
 				<Section className="flexed flex-wrap py-3">
-					{products?.map((product) => {
-						const {
-							id,
-							title,
-							image,
-							price,
-							rating: { rate },
-						} = product;
+					{products?.length === 0 ? (
+						<div className="flex-col">
+							<FadingCircle size={100} color="#ddd" />
+							<h3 className="mt-5 mb-0 py-3 text-white text-center">
+								Please Wait
+							</h3>
+						</div>
+					) : (
+						products.map((product) => {
+							const {
+								id,
+								title,
+								image,
+								price,
+								rating: { rate },
+							} = product;
 
-						return (
-							<Col lg={3} md={5} sm={4} key={id} className="my-3">
-								<Wrap className="d-flex flex-column mx-3">
-									<div className="productImg__wrap flexed pt-2">
-										<img
-											className="product__image"
-											src={image}
-											alt={title}
-											width="100"
-											height="150"
-										/>
-									</div>
-									<div className="product__details p-2 pb-1">
-										<div className="details__top flex-btw">
-											<p className="product__title mb-0 text-center">
-												{truncate(title, 25)}
-											</p>
-											<IconButton>
-												<AddShoppingCart
-													className="items__cartIcon"
-													onClick={() => {
-														dispatch(addToCart(product));
-													}}
-												/>
-											</IconButton>
-										</div>
-										<div className="details__mid flex-btw">
-											<p className="mb-0 product__price">${price}</p>
-											<StarRatingComponent
-												name={title}
-												className="star__rating"
-												starCount={5}
-												value={rate}
+							return (
+								<Col lg={3} md={5} sm={4} key={id} className="my-3">
+									<Wrap className="d-flex flex-column mx-3">
+										<div className="productImg__wrap flexed pt-2">
+											<img
+												className="product__image"
+												src={image}
+												alt={title}
+												width="100"
+												height="150"
 											/>
 										</div>
-										<div className="details__bottom">
-											<Link to={`/product/${id}`} className="product__link">
-												<p className="mb-0 product__more text-center my-2 py-2">
-													More Details
+										<div className="product__details p-2 pb-1">
+											<div className="details__top flex-btw">
+												<p className="product__title mb-0 text-center">
+													{truncate(title, 25)}
 												</p>
-											</Link>
+												<IconButton>
+													<AddShoppingCart
+														className="items__cartIcon"
+														onClick={() => {
+															dispatch(addToCart(product));
+														}}
+													/>
+												</IconButton>
+											</div>
+											<div className="details__mid flex-btw">
+												<p className="mb-0 product__price">${price}</p>
+												<StarRatingComponent
+													name={title}
+													className="star__rating"
+													starCount={5}
+													value={rate}
+												/>
+											</div>
+											<div className="details__bottom">
+												<Link to={`/product/${id}`} className="product__link">
+													<p className="mb-0 product__more text-center my-2 py-2">
+														More Details
+													</p>
+												</Link>
+											</div>
 										</div>
-									</div>
-								</Wrap>
-							</Col>
-						);
-					})}
+									</Wrap>
+								</Col>
+							);
+						})
+					)}
 				</Section>
 			</Row>
 		</Container>
