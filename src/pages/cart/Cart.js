@@ -9,7 +9,7 @@ import {
 	// adjustQuantity,
 	increaseQuantity,
 	// addToCart,
-	// retrieveItems,
+	retrieveItems,
 	decreaseQuantity,
 } from "../../features/shopSlice";
 import OrderSummary from "./OrderSummary";
@@ -17,20 +17,6 @@ import OrderSummary from "./OrderSummary";
 function Cart() {
 	const cartItems = useSelector(selectCart);
 	const dispatch = useDispatch();
-	// const [itemQty, setItemQty] = useState(5);
-
-	useEffect(() => {
-		const data = localStorage.getItem("cart-items");
-		const parsedData = JSON.parse(data);
-
-		if (parsedData) {
-			// dispatch(retrieveItems(parsedData));
-		}
-	}, []);
-
-	useEffect(() => {
-		localStorage.setItem("cart-items", JSON.stringify(cartItems));
-	}, [cartItems]);
 
 	return (
 		<Container>
@@ -66,14 +52,13 @@ function Cart() {
 														className="adjuster"
 														onClick={() => {
 															if (item.qty <= 1) {
-																// return;
 																dispatch(removeFromCart(item.id));
 															} else {
 																dispatch(decreaseQuantity(item));
 															}
 														}}
 													/>
-													<p className="item__qty mb-0 mx-3">{qty} </p>
+													<p className="item__qty mb-0 mx-3">{qty}</p>
 													<AddCircle
 														className="adjuster"
 														onClick={() => {
@@ -86,13 +71,13 @@ function Cart() {
 										<div className="cartItem__priceWrap">
 											<div className="item__price">
 												<p className="mb-0 price__value p-2 text-center">
-													$ {price}{" "}
+													$ {price}
 												</p>
 											</div>
 
 											<div className="item__total flex-col my-3 p-2">
 												<p className="mb-0 total__tag">Total Cost</p>
-												<p className="total__value">$ {price * qty} </p>
+												<p className="total__value">$ {price * qty}</p>
 											</div>
 
 											<div

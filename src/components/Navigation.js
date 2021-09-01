@@ -33,7 +33,7 @@ function Navigation() {
 			<div className="nav__right">
 				<Link to="/cart">
 					<ShoppingCartOutlined className="cart__icon" />
-					<span className="badge__wrap"> {parseInt(cartItems)} </span>
+					<span className="badge__wrap"> {cartItems} </span>
 				</Link>
 			</div>
 		</Nav>

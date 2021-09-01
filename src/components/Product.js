@@ -1,7 +1,11 @@
 import { AddShoppingCart } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSetProducts } from "../features/shopSlice";
+import {
+	retrieveItems,
+	selectCart,
+	selectSetProducts,
+} from "../features/shopSlice";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
@@ -11,11 +15,23 @@ import { addToCart } from "../features/shopSlice";
 
 function ProductComponent() {
 	const products = useSelector(selectSetProducts);
+	const dispatch = useDispatch();
+	const cart = useSelector(selectCart);
 
 	const truncate = (text, number) =>
 		text.length > number ? `${text.substring(0, number)}...` : text;
 
-	const dispatch = useDispatch();
+	// useEffect(() => {
+	// 	const parsedData = JSON.parse(localStorage.getItem("cart-items"));
+
+	// 	if (parsedData) {
+	// 		dispatch(retrieveItems(parsedData));
+	// 	}
+	// }, []);
+
+	// useEffect(() => {
+	// 	localStorage.setItem("cart-items", JSON.stringify(cart));
+	// }, [addToCart, cart]);
 
 	return (
 		<>
