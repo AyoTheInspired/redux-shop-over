@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
 	retrieveItems,
 	selectCart,
+	selectItemAdded,
 	selectSetProducts,
+	closeToast,
 } from "../features/shopSlice";
 import { Link } from "react-router-dom";
-import { Col } from "react-bootstrap";
+import { Container, Row, Col, Toast } from "react-bootstrap";
 import styled from "styled-components";
 import { IconButton } from "@material-ui/core";
 import StarRatingComponent from "react-star-rating-component";
@@ -17,6 +19,7 @@ function ProductComponent() {
 	const products = useSelector(selectSetProducts);
 	const dispatch = useDispatch();
 	const cart = useSelector(selectCart);
+	const itemAdded = useSelector(selectItemAdded);
 
 	const truncate = (text, number) =>
 		text.length > number ? `${text.substring(0, number)}...` : text;
@@ -34,69 +37,114 @@ function ProductComponent() {
 	// }, [addToCart, cart]);
 
 	return (
-		<>
-			{/* <h4 className="d-block test-text">SHOW THIS FIRST AND FOREMOST</h4> */}
-			{products.map((product) => {
-				const {
-					id,
-					title,
-					image,
-					price,
-					rating: { rate },
-				} = product;
-
-				return (
-					<Col lg={3} md={5} sm={4} key={id} className="my-3">
-						<Wrap className="d-flex flex-column mx-3">
-							<div className="productImg__wrap flexed pt-2">
+		<Container>
+			<Row>
+				{itemAdded && (
+					<ToastWrapper className="mx-auto col-lg-8 flexed">
+						<Toast
+							className=""
+							onClose={() => {
+								dispatch(closeToast());
+							}}
+							show={itemAdded}
+							delay={3000}
+							autohide={true}>
+							{/* <Toast.Header>
 								<img
-									className="product__image"
-									src={image}
-									alt={title}
-									width="100"
-									height="150"
+									src="holder.js/20x20?text=%20"
+									className="rounded me-2"
+									alt=""
 								/>
-							</div>
-							<div className="product__details p-2 pb-1">
-								<div className="details__top flex-btw">
-									<p className="product__title mb-0 text-center">
-										{truncate(title, 25)}
-									</p>
-									<IconButton>
-										<AddShoppingCart
-											className="items__cartIcon"
-											onClick={() => {
-												dispatch(addToCart(product));
-											}}
+								<strong className="me-auto">Bootstrap</strong>
+								<small>11 mins ago</small>
+							</Toast.Header> */}
+							<Toast.Body className="toast__body">
+								<p className="mb-0 cart__alert">
+									Item has been added to cart.{" "}
+								</p>
+							</Toast.Body>
+						</Toast>
+					</ToastWrapper>
+				)}
+
+				<Section className="flexed flex-wrap py-3">
+					{products.map((product) => {
+						const {
+							id,
+							title,
+							image,
+							price,
+							rating: { rate },
+						} = product;
+
+						return (
+							<Col lg={3} md={5} sm={4} key={id} className="my-3">
+								<Wrap className="d-flex flex-column mx-3">
+									<div className="productImg__wrap flexed pt-2">
+										<img
+											className="product__image"
+											src={image}
+											alt={title}
+											width="100"
+											height="150"
 										/>
-									</IconButton>
-								</div>
-								<div className="details__mid flex-btw">
-									<p className="mb-0 product__price">${price}</p>
-									<StarRatingComponent
-										name={title}
-										className="star__rating"
-										starCount={5}
-										value={rate}
-									/>
-								</div>
-								<div className="details__bottom">
-									<Link to={`/product/${id}`} className="product__link">
-										<p className="mb-0 product__more text-center my-2 py-2">
-											More Details
-										</p>
-									</Link>
-								</div>
-							</div>
-						</Wrap>
-					</Col>
-				);
-			})}
-		</>
+									</div>
+									<div className="product__details p-2 pb-1">
+										<div className="details__top flex-btw">
+											<p className="product__title mb-0 text-center">
+												{truncate(title, 25)}
+											</p>
+											<IconButton>
+												<AddShoppingCart
+													className="items__cartIcon"
+													onClick={() => {
+														dispatch(addToCart(product));
+													}}
+												/>
+											</IconButton>
+										</div>
+										<div className="details__mid flex-btw">
+											<p className="mb-0 product__price">${price}</p>
+											<StarRatingComponent
+												name={title}
+												className="star__rating"
+												starCount={5}
+												value={rate}
+											/>
+										</div>
+										<div className="details__bottom">
+											<Link to={`/product/${id}`} className="product__link">
+												<p className="mb-0 product__more text-center my-2 py-2">
+													More Details
+												</p>
+											</Link>
+										</div>
+									</div>
+								</Wrap>
+							</Col>
+						);
+					})}
+				</Section>
+			</Row>
+		</Container>
 	);
 }
 
 export default ProductComponent;
+
+const Section = styled.section``;
+
+const ToastWrapper = styled.div`
+	position: sticky;
+	top: 50px;
+	z-index: 100;
+	background: rgba(0, 0, 0, 0.25);
+	padding: 5px 0;
+
+	.toast__body {
+		background: #fff !important;
+	}
+`;
 
 const Wrap = styled.div`
 	background: #fff;

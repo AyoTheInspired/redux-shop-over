@@ -22,7 +22,6 @@ const ProductListing = () => {
 				alert("Err", err);
 			});
 
-		// console.log(response?.data);
 		dispatch(setProducts(response?.data));
 	};
 
@@ -30,43 +29,20 @@ const ProductListing = () => {
 		fetchProducts();
 	}, []);
 	return (
-		<Container>
-			<Row>
-				{itemAdded && (
-					<div className="toast__wrapper mx-auto col flexed mt-5">
-						<Toast
-							onClose={() => {
-								dispatch(closeToast());
-							}}
-							show={itemAdded}
-							// delay={3000}
-							// autohide={true}
-						>
-							{/* <Toast.Header>
-								<img
-									src="holder.js/20x20?text=%20"
-									className="rounded me-2"
-									alt=""
-								/>
-								<strong className="me-auto">Bootstrap</strong>
-								<small>11 mins ago</small>
-							</Toast.Header> */}
-							<Toast.Body className="toast__body">
-								Woohoo, you're reading this text in a Toast!
-							</Toast.Body>
-						</Toast>
-					</div>
-				)}
-				<Section className="flexed flex-wrap py-3">
-					<ProductComponent />
-				</Section>
-			</Row>
-		</Container>
+		<>
+			<ProductComponent />
+		</>
 	);
 };
 
 export default ProductListing;
 
-const Section = styled.section`
-	/* margin-top: 20px !important; */
+const Section = styled.section``;
+
+const ToastWrapper = styled.div`
+	position: sticky;
+	top: 30px;
+	z-index: 100;
+	background: rgba(0, 0, 0, 0.25);
+	padding: 10px 0;
 `;

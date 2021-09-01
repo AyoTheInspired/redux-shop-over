@@ -6,12 +6,12 @@ import ProductDetail from "./pages/ProductDetail";
 import Navigation from "./components/Navigation";
 import Cart from "./pages/cart/Cart";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { selectItemAdded } from "./features/shopSlice";
 
 function App() {
 	return (
 		<div className="app">
 			<Router>
-				{/* <Header /> */}
 				<Navigation />
 				<Switch>
 					<Route exact path="/" component={ProductListing} />
