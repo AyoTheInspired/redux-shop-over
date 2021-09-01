@@ -76,13 +76,11 @@ function ProductDetail() {
 										{singleProduct.category}
 									</p>
 
-									<IconButton>
-										<AddShoppingCartRounded
-											className="singleProduct__cart"
-											onClick={() => {
-												dispatch(addToCart(singleProduct));
-											}}
-										/>
+									<IconButton
+										onClick={() => {
+											dispatch(addToCart(singleProduct));
+										}}>
+										<AddShoppingCartRounded className="singleProduct__cart" />
 									</IconButton>
 								</div>
 							</Col>
@@ -104,6 +102,7 @@ function ProductDetail() {
 export default ProductDetail;
 
 const Section = styled.section`
+	min-height: 70vh;
 	background: var(--pry-clr-2);
 	.singleProduct__imgWrap,
 	.singleProduct__details {

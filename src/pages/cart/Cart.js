@@ -100,8 +100,6 @@ function Cart() {
 	);
 }
 
-{
-}
 export default Cart;
 
 const Section = styled.section`
