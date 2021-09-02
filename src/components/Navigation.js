@@ -1,4 +1,4 @@
-import { Menu, ShoppingCartOutlined } from "@material-ui/icons";
+import { Close, Menu, ShoppingCartOutlined } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const productCategories = [
 
 function Navigation() {
 	const cart = useSelector(selectCart);
-	const [categoryClicked, setCategoryClicked] = useState(false);
+	const [categoryClicked, setCategoryClicked] = useState(true);
 	const [cartItems, setCartItems] = useState(0);
 
 	// const changeCatgory = (e) => {
@@ -40,8 +40,8 @@ function Navigation() {
 			</div>
 			<div
 				className={`${
-					categoryClicked && "show__sidebar"
-				} nav__mid flexed col-lg-6 col-md`}
+					categoryClicked ? "toggle__sidebar" : null
+				} nav__mid flexed col-lg-7 col-md`}
 				categoryClicked>
 				<ul className="col my-auto">
 					{productCategories.map((category, id) => {
@@ -67,8 +67,15 @@ function Navigation() {
 				</Link>
 			</div>
 
-			<div className="hamburger__container d-lg-none">
-				<Menu onClick={() => setCategoryClicked(!categoryClicked)} />
+			<div
+				className="hamburger__container d-lg-none"
+				onClick={() => setCategoryClicked(!categoryClicked)}>
+				{categoryClicked ? (
+					<Menu className="toggle__icon" />
+				) : (
+					<Close className="toggle__icon" />
+				)}
+				{/* <Menu /> */}
 			</div>
 		</Nav>
 	);
@@ -167,6 +174,11 @@ const Nav = styled.nav`
 	@media (max-width: 768px) {
 		position: relative;
 
+		.nav__right {
+			margin-left: auto;
+			margin-right: 20px;
+		}
+
 		.nav__mid {
 			position: absolute;
 			top: 49px;
@@ -185,20 +197,14 @@ const Nav = styled.nav`
 				justify-content: space-around;
 				align-items: flex-start !important;
 				margin-left: auto;
-
-				/* li {
-					background: red;
-					align-content: flex-end !important;
-				} */
 			}
 		}
 
-		.hamburger__container {
-			display: block;
-			/* margin-left: 25px; */
+		.toggle__icon {
+			font-size: 25px;
 		}
 
-		.show__sidebar {
+		.toggle__sidebar {
 			transform: translateX(100%);
 		}
 	}
