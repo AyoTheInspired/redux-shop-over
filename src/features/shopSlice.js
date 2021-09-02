@@ -18,7 +18,6 @@ export const shopSlice = createSlice({
 
 		selectedProduct: (state, action) => {
 			return { ...state, selectedProduct: action.payload };
-			// state.selectedProduct = action.payload;
 		},
 		// Remove previous product before displaying new one on request
 		removeSelectedProduct: (state) => {
@@ -85,6 +84,18 @@ export const shopSlice = createSlice({
 				),
 			};
 		},
+
+		toggleCategory: (state, action) => {
+			return {
+				...state,
+				products: state.products.filter((product) => {
+					if (action.payload === "all") {
+						return;
+					}
+					return product.category === action.payload;
+				}),
+			};
+		},
 	},
 });
 
@@ -98,6 +109,7 @@ export const {
 	increaseQuantity,
 	decreaseQuantity,
 	closeToast,
+	toggleCategory,
 } = shopSlice.actions;
 
 // export const selectState = (state) => state.shop;

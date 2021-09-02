@@ -1,13 +1,13 @@
 import { Close, Menu, ShoppingCartOutlined } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { selectCart } from "../features/shopSlice";
+import { selectCart, toggleCategory } from "../features/shopSlice";
 
 const productCategories = [
 	{ name: "All", property: "all" },
-	{ name: "Men's Clothing", propertye: "Men's clothing" },
+	{ name: "Men's Clothing", property: "men's clothing" },
 	{ name: "Women's Clothing", property: "women's clothing" },
 	{ name: "Jewellery", property: "jewelery" },
 	{ name: "Electronics", property: "electronics" },
@@ -17,7 +17,7 @@ function Navigation() {
 	const cart = useSelector(selectCart);
 	const [categoryClicked, setCategoryClicked] = useState(true);
 	const [cartItems, setCartItems] = useState(0);
-
+	const dispatch = useDispatch();
 	// const changeCatgory = (e) => {
 	// 	setCategoryClicked(!categoryClicked);
 	// 	// e.classList.add("category__item-clicked");
@@ -49,7 +49,10 @@ function Navigation() {
 						return (
 							<li
 								data-id={property}
-								// onClick={changeCatgory}
+								onClick={() => {
+									dispatch(toggleCategory(property));
+									console.log(property);
+								}}
 								className=" mx-auto category__item"
 								key={id + 1}>
 								{name}
