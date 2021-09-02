@@ -51,7 +51,6 @@ function Navigation() {
 								data-id={property}
 								onClick={() => {
 									dispatch(toggleCategory(property));
-									console.log(property);
 								}}
 								className=" mx-auto category__item"
 								key={id + 1}>

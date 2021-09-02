@@ -65,7 +65,6 @@ function ProductComponent() {
 								category,
 								rating: { rate },
 							} = product;
-							console.log(category);
 
 							return (
 								<Col lg={3} md={5} sm={4} key={id} className="my-3">

@@ -77,6 +77,9 @@ export const shopSlice = createSlice({
 		},
 
 		decreaseQuantity: (state, action) => {
+			const payloadItem = action.payload;
+			const filteredProducts = state.cart;
+
 			return {
 				...state,
 				cart: state.cart.map((item) =>
@@ -85,17 +88,17 @@ export const shopSlice = createSlice({
 			};
 		},
 
-		toggleCategory: (state, action) => {
-			return {
-				...state,
-				products: state.products.filter((product) => {
-					if (action.payload === "all") {
-						return;
-					}
-					return product.category === action.payload;
-				}),
-			};
-		},
+		// toggleCategory: (state, action) => {
+		// 	return {
+		// 		...state,
+		// 		products: state.products.filter((product) => {
+		// 			if (action.payload === "all") {
+		// 				return;
+		// 			}
+		// 			return product.category === action.payload;
+		// 		}),
+		// 	};
+		// },
 	},
 });
 
