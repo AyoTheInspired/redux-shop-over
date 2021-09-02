@@ -50,11 +50,9 @@ function Navigation() {
 							<li
 								data-id={property}
 								// onClick={changeCatgory}
-								className=" mx-auto"
+								className=" mx-auto category__item"
 								key={id + 1}>
-								<a href="#" className="category__item text-center">
-									{name}
-								</a>
+								{name}
 							</li>
 						);
 					})}
@@ -75,7 +73,6 @@ function Navigation() {
 				) : (
 					<Close className="toggle__icon" />
 				)}
-				{/* <Menu /> */}
 			</div>
 		</Nav>
 	);
@@ -135,7 +132,6 @@ const Nav = styled.nav`
 			display: flex;
 			justify-content: space-around;
 			align-items: center;
-			align-self: center !important;
 
 			li {
 				list-style-type: none;
@@ -148,19 +144,8 @@ const Nav = styled.nav`
 				letter-spacing: 0.5px;
 				transition: var(--sht-trans);
 
-				a {
-					text-decoration: none;
-					color: #000;
-
-					:hover {
-						/* color: #fff; */
-					}
-				}
-
 				:hover {
 					background: var(--pry-clr-1);
-				}
-				:hover a {
 					color: #fff;
 				}
 			}
@@ -185,17 +170,19 @@ const Nav = styled.nav`
 			left: 0;
 			min-height: calc(100vh - 49px);
 			width: 100%;
-			background: #aaa;
+			background: rgba(0, 0, 0, 0.5);
 			transition: transform 0.25s linear;
 
 			ul {
 				display: flex;
 				flex-direction: column;
-				background: blue;
+				background: #fff;
+				padding-bottom: 100px;
+				border-top-left-radius: 15px;
+				border-bottom-left-radius: 15px;
 				height: 92vh;
 				max-width: 50vw;
 				justify-content: space-around;
-				align-items: flex-start !important;
 				margin-left: auto;
 			}
 		}
