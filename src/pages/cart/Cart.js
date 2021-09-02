@@ -22,78 +22,84 @@ function Cart() {
 		<Container>
 			<Row>
 				<Section className="d-flex justify-content-center align-items-start flex-wrap py-4 mt-5">
-					<div className="wrapper flexed flex-wrap col-lg-9 mx-auto px-4">
-						<Col sm={8} md={5} lg={6} className="cartPage__left">
-							{cartItems.map((item) => {
-								const { image, title, price, id, qty } = item;
+					{cartItems.length === 0 ? (
+						<h3>Your Cart is empty!</h3>
+					) : (
+						<div className="wrapper flexed flex-wrap col-lg-9 mx-auto px-4">
+							<Col sm={8} md={5} lg={6} className="cartPage__left">
+								{cartItems.map((item) => {
+									const { image, title, price, id, qty } = item;
 
-								return (
-									<CartItemWrap
-										key={id}
-										className="d-flex align-items-center justify-content-between my-4">
-										<div className="cartItem__imageWrap">
-											<img
-												src={image}
-												alt={title}
-												width="70"
-												className="cartItem__image"
-											/>
-										</div>
-										<div className="cartItem__titleWrap">
-											<div className="itemTitle__top mb-3">
-												<p className="mb-0 text-center cartItem__title mr-2">
-													{title}
-												</p>
+									return (
+										<CartItemWrap
+											key={id}
+											className="d-flex align-items-center justify-content-between my-4">
+											<div className="cartItem__imageWrap">
+												<img
+													src={image}
+													alt={title}
+													width="70"
+													className="cartItem__image"
+												/>
 											</div>
-											<div className="itemTitle__bottom">
-												<p className="mb-0 itemQtyTag text-center">Quantity</p>
-												<div className="qty__buttons flexed mt-3">
-													<RemoveCircle
-														className="adjuster"
-														onClick={() => {
-															if (item.qty <= 1) {
-																dispatch(removeFromCart(item.id));
-															} else {
-																dispatch(decreaseQuantity(item));
-															}
-														}}
-													/>
-													<p className="item__qty mb-0 mx-3">{qty}</p>
-													<AddCircle
-														className="adjuster"
-														onClick={() => {
-															dispatch(increaseQuantity(item));
-														}}
-													/>
+											<div className="cartItem__titleWrap">
+												<div className="itemTitle__top mb-3">
+													<p className="mb-0 text-center cartItem__title mr-2">
+														{title}
+													</p>
+												</div>
+												<div className="itemTitle__bottom">
+													<p className="mb-0 itemQtyTag text-center">
+														Quantity
+													</p>
+													<div className="qty__buttons flexed mt-3">
+														<RemoveCircle
+															className="adjuster"
+															onClick={() => {
+																if (item.qty <= 1) {
+																	dispatch(removeFromCart(item.id));
+																} else {
+																	dispatch(decreaseQuantity(item));
+																}
+															}}
+														/>
+														<p className="item__qty mb-0 mx-3">{qty}</p>
+														<AddCircle
+															className="adjuster"
+															onClick={() => {
+																dispatch(increaseQuantity(item));
+															}}
+														/>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div className="cartItem__priceWrap">
-											<div className="item__price">
-												<p className="mb-0 price__value p-2 text-center">
-													$ {price}
-												</p>
-											</div>
+											<div className="cartItem__priceWrap">
+												<div className="item__price">
+													<p className="mb-0 price__value p-2 text-center">
+														$ {price}
+													</p>
+												</div>
 
-											<div className="item__total flex-col my-3 p-2">
-												<p className="mb-0 total__tag">Total Cost</p>
-												<p className="total__value">$ {price * qty}</p>
-											</div>
+												<div className="item__total flex-col my-3 p-2">
+													<p className="mb-0 total__tag">Total Cost</p>
+													<p className="total__value">$ {price * qty}</p>
+												</div>
 
-											<div
-												className="item__remove flexed p-2"
-												onClick={() => dispatch(removeFromCart(id))}>
-												<DeleteForever className="delete__icon" />
+												<div
+													className="item__remove flexed p-2"
+													onClick={() => dispatch(removeFromCart(id))}>
+													<DeleteForever className="delete__icon" />
 
-												<p className="remove mb-0">Remove</p>
+													<p className="remove mb-0">Remove</p>
+												</div>
 											</div>
-										</div>
-									</CartItemWrap>
-								);
-							})}
-						</Col>
-						<OrderSummary />
-					</div>
+										</CartItemWrap>
+									);
+								})}
+							</Col>
+							<OrderSummary />
+						</div>
+					)}
 				</Section>
 			</Row>
 		</Container>

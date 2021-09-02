@@ -26,7 +26,7 @@ function Navigation() {
 	useEffect(() => {
 		let count = 0;
 		cart.forEach((item) => {
-			count += item.qty;
+			count = count + item.qty;
 			setCartItems(count);
 		});
 	}, [cart, cartItems]);

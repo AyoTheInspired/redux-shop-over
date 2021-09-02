@@ -56,7 +56,20 @@ export const shopSlice = createSlice({
 		removeFromCart: (state, action) => {
 			return {
 				...state,
-				cart: state.cart.filter((item) => item.id !== action.payload),
+				cart: state.cart.filter((item) => {
+					if (state.cart.length === 0) {
+						return [];
+					}
+
+					return item.id !== action.payload;
+				}),
+			};
+		},
+
+		clearCart: (state) => {
+			return {
+				...state,
+				cart: [],
 			};
 		},
 
