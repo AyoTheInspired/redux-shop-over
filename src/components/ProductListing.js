@@ -17,6 +17,7 @@ const ProductListing = () => {
 			});
 
 		dispatch(setProducts(response?.data));
+		console.log(response.data);
 	};
 
 	useEffect(() => {

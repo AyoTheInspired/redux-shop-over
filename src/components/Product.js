@@ -62,8 +62,10 @@ function ProductComponent() {
 								title,
 								image,
 								price,
+								category,
 								rating: { rate },
 							} = product;
+							console.log(category);
 
 							return (
 								<Col lg={3} md={5} sm={4} key={id} className="my-3">
@@ -129,9 +131,14 @@ const ToastWrapper = styled.div`
 	z-index: 100;
 	background: rgba(0, 0, 0, 0.25);
 	padding: 5px 0;
+	transition: var(--sht-trans);
 
 	.toast__body {
 		background: #fff !important;
+	}
+
+	.cart__alert {
+		font-size: 18px;
 	}
 `;
 

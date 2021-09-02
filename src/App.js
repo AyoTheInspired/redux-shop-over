@@ -13,8 +13,8 @@ function App() {
 			<Router>
 				<Navigation />
 				<Switch>
-					<Route exact path="/" component={ProductListing} />
-					<Route exact path="/product/:productId" component={ProductDetail} />
+					{/* <Route exact path="/" component={ProductListing} /> */}
+					{/* <Route exact path="/product/:productId" component={ProductDetail} /> */}
 					<Route exact path="/cart" component={Cart} />
 					{/* <Route>404 Not Found</Route> */}
 				</Switch>
