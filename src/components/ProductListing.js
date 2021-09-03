@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCart, setProducts } from "../features/shopSlice";
+import {
+	requestFailure,
+	requestProcessing,
+	selectCart,
+	setProducts,
+} from "../features/shopSlice";
 import ProductComponent from "./Product";
 import styled from "styled-components";
 import axios from "axios";
@@ -10,21 +15,23 @@ const ProductListing = () => {
 	const cart = useSelector(selectCart);
 
 	const fetchProducts = async () => {
+		dispatch(requestProcessing());
 		const response = await axios
-			.get("https://fakestoreapi.com/products")
+			.get("https://fakestoreap.com/products")
 			.catch((err) => {
-				alert(err);
+				// alert(err);
+				dispatch(requestFailure(err.message));
 			});
 
 		dispatch(setProducts(response?.data));
-		console.log(response.data);
+		// console.log(response.data);
 	};
 
 	useEffect(() => {
 		fetchProducts();
 	}, []);
 	return (
-		<Container>
+		<Container className="flexed">
 			{/* {cart.length !== 0 ? <ProductComponent /> : <h3>Loading ...</h3>} */}
 			<ProductComponent />
 		</Container>

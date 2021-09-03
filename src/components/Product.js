@@ -7,6 +7,7 @@ import {
 	selectItemAdded,
 	selectSetProducts,
 	closeToast,
+	selectShop,
 } from "../features/shopSlice";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Toast } from "react-bootstrap";
@@ -19,6 +20,7 @@ import FadingCircle from "better-react-spinkit/dist/FadingCircle";
 function ProductComponent() {
 	const products = useSelector(selectSetProducts);
 	const dispatch = useDispatch();
+	const shopState = useSelector(selectShop);
 	const cart = useSelector(selectCart);
 	const itemAdded = useSelector(selectItemAdded);
 
@@ -48,13 +50,18 @@ function ProductComponent() {
 				)}
 
 				<Section className="flexed flex-wrap py-3">
-					{products?.length === 0 ? (
+					{shopState.isLoading ? (
 						<div className="flex-col">
 							<FadingCircle size={100} color="#ddd" />
 							<h3 className="mt-5 mb-0 py-3 text-white text-center">
 								Please Wait
 							</h3>
 						</div>
+					) : shopState.errorMsg ? (
+						<h3 className="mb-0 text-white">
+							{" "}
+							{shopState.errorMsg} ... Please Refresh{" "}
+						</h3>
 					) : (
 						products.map((product) => {
 							const {

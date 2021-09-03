@@ -6,7 +6,7 @@ const initialState = {
 	cart: [],
 	isLoading: false,
 	itemAdded: false,
-	isError: true,
+	isError: false,
 	errorMsg: "",
 };
 
@@ -15,7 +15,7 @@ export const shopSlice = createSlice({
 	initialState,
 	reducers: {
 		setProducts: (state, action) => {
-			return { ...state, products: action.payload };
+			return { ...state, isLoading: false, products: action.payload };
 		},
 
 		selectedProduct: (state, action) => {
@@ -24,6 +24,19 @@ export const shopSlice = createSlice({
 		// Remove previous product before displaying new one on request
 		removeSelectedProduct: (state) => {
 			return { ...state, selectedProduct: [] };
+		},
+
+		requestProcessing: (state) => {
+			return { ...state, isLoading: true };
+		},
+
+		requestFailure: (state, action) => {
+			return {
+				...state,
+				isError: true,
+				isLoading: false,
+				errorMsg: action.payload,
+			};
 		},
 
 		closeToast: (state) => {
@@ -101,6 +114,8 @@ export const shopSlice = createSlice({
 
 export const {
 	setProducts,
+	requestFailure,
+	requestProcessing,
 	selectedProduct,
 	removeSelectedProduct,
 	addToCart,
@@ -120,6 +135,8 @@ export const selectSetProducts = (state) => state.shop.products;
 export const selectSelectedProduct = (state) => state.shop.selectedProduct;
 
 export const selectCart = (state) => state.shop.cart;
+
+export const selectShop = (state) => state.shop;
 
 export const selectItemAdded = (state) => state.shop.itemAdded;
 
