@@ -6,6 +6,8 @@ const initialState = {
 	cart: [],
 	isLoading: false,
 	itemAdded: false,
+	isError: true,
+	errorMsg: "",
 };
 
 export const shopSlice = createSlice({
@@ -57,26 +59,8 @@ export const shopSlice = createSlice({
 			return {
 				...state,
 				cart: state.cart.filter((item) => {
-					if (state.cart.length === 0) {
-						return [];
-					}
-
 					return item.id !== action.payload;
 				}),
-			};
-		},
-
-		clearCart: (state) => {
-			return {
-				...state,
-				cart: [],
-			};
-		},
-
-		retrieveItems: (state, action) => {
-			return {
-				...state,
-				cart: [...state.cart, ...action.payload],
 			};
 		},
 
@@ -121,6 +105,7 @@ export const {
 	removeSelectedProduct,
 	addToCart,
 	removeFromCart,
+	clearCart,
 	retrieveItems,
 	increaseQuantity,
 	decreaseQuantity,

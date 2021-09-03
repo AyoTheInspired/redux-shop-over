@@ -11,6 +11,7 @@ import {
 	// addToCart,
 	retrieveItems,
 	decreaseQuantity,
+	clearCart,
 } from "../../features/shopSlice";
 import OrderSummary from "./OrderSummary";
 
@@ -87,7 +88,9 @@ function Cart() {
 
 												<div
 													className="item__remove flexed p-2"
-													onClick={() => dispatch(removeFromCart(id))}>
+													onClick={() => {
+														dispatch(removeFromCart(id));
+													}}>
 													<DeleteForever className="delete__icon" />
 
 													<p className="remove mb-0">Remove</p>

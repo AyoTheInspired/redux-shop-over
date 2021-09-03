@@ -14,7 +14,7 @@ import { AddShoppingCartRounded } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { FadingCircle } from "better-react-spinkit";
 
-function ProductDetail() {
+function ProductDetail({ color }) {
 	const { productId } = useParams();
 	const dispatch = useDispatch();
 	const singleProduct = useSelector(selectSelectedProduct);
@@ -24,6 +24,7 @@ function ProductDetail() {
 			.get(`https://fakestoreapi.com/products/${productId}`)
 			.catch((err) => {
 				alert(err);
+				// console.log(err);
 			});
 		dispatch(selectedProduct(response?.data));
 	};

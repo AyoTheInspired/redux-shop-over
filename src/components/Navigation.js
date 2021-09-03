@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { selectCart, toggleCategory } from "../features/shopSlice";
+import {
+	selectCart,
+	toggleCategory,
+	removeFromCart,
+} from "../features/shopSlice";
 
 const productCategories = [
 	{ name: "All", property: "all" },
@@ -16,7 +20,7 @@ const productCategories = [
 function Navigation() {
 	const cart = useSelector(selectCart);
 	const [categoryClicked, setCategoryClicked] = useState(true);
-	const [cartItems, setCartItems] = useState(0);
+	const [cartCount, setCartCount] = useState(0);
 	const dispatch = useDispatch();
 	// const changeCatgory = (e) => {
 	// 	setCategoryClicked(!categoryClicked);
@@ -26,10 +30,11 @@ function Navigation() {
 	useEffect(() => {
 		let count = 0;
 		cart.forEach((item) => {
-			count = count + item.qty;
-			setCartItems(count);
+			count += item.qty;
 		});
-	}, [cart, cartItems]);
+
+		setCartCount(count);
+	}, [cart, cartCount]);
 
 	return (
 		<Nav className="py-2 px-3 flex-btw">
@@ -48,10 +53,9 @@ function Navigation() {
 						const { name, property } = category;
 						return (
 							<li
-								data-id={property}
-								onClick={() => {
-									dispatch(toggleCategory(property));
-								}}
+								// onClick={() => {
+								// 	dispatch(toggleCategory(property));
+								// }}
 								className=" mx-auto category__item"
 								key={id + 1}>
 								{name}
@@ -63,7 +67,7 @@ function Navigation() {
 			<div className="nav__right">
 				<Link to="/cart">
 					<ShoppingCartOutlined className="cart__icon" />
-					<span className="badge__wrap"> {cartItems} </span>
+					<span className="badge__wrap"> {cartCount} </span>
 				</Link>
 			</div>
 
@@ -195,6 +199,8 @@ const Nav = styled.nav`
 
 		.toggle__sidebar {
 			transform: translateX(100%);
+			opacity: 0;
+			z-index: -99;
 		}
 	}
 `;
