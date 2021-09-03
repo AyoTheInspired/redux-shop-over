@@ -31,7 +31,7 @@ function ProductComponent() {
 		<Container>
 			<Row>
 				{itemAdded && (
-					<ToastWrapper className="mx-auto col-lg-8 flexed">
+					<ToastWrapper className="mx-auto flexed">
 						<Toast
 							className=""
 							onClose={() => {
@@ -75,6 +75,8 @@ function ProductComponent() {
 
 							return (
 								<Col lg={3} md={5} sm={4} key={id} className="my-3">
+									{/* {itemAdded && <p> item added to cart</p>} */}
+
 									<Wrap className="d-flex flex-column mx-3">
 										<div className="productImg__wrap flexed pt-2">
 											<img
@@ -132,8 +134,8 @@ export default ProductComponent;
 const Section = styled.section``;
 
 const ToastWrapper = styled.div`
-	position: sticky;
-	top: 50px;
+	position: absolute;
+	top: 20px;
 	z-index: 100;
 	background: rgba(0, 0, 0, 0.25);
 	padding: 5px 0;
