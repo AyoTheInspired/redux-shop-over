@@ -17,7 +17,7 @@ const ProductListing = () => {
 	const fetchProducts = async () => {
 		dispatch(requestProcessing());
 		const response = await axios
-			.get("https://fakestoreap.com/products")
+			.get("https://fakestoreapi.com/products")
 			.catch((err) => {
 				// alert(err);
 				dispatch(requestFailure(err.message));
