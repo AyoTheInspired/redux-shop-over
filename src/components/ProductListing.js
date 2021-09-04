@@ -19,12 +19,10 @@ const ProductListing = () => {
 		const response = await axios
 			.get("https://fakestoreapi.com/products")
 			.catch((err) => {
-				// alert(err);
 				dispatch(requestFailure(err.message));
 			});
 
 		dispatch(setProducts(response?.data));
-		// console.log(response.data);
 	};
 
 	useEffect(() => {
@@ -32,7 +30,6 @@ const ProductListing = () => {
 	}, []);
 	return (
 		<Container className="flexed">
-			{/* {cart.length !== 0 ? <ProductComponent /> : <h3>Loading ...</h3>} */}
 			<ProductComponent />
 		</Container>
 	);
