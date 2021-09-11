@@ -17,112 +17,34 @@ import StarRatingComponent from "react-star-rating-component";
 import { addToCart } from "../features/shopSlice";
 import FadingCircle from "better-react-spinkit/dist/FadingCircle";
 import CartAlert from "./CartAlert";
+import SingleProduct from "./SingleProduct";
 
 function ProductComponent() {
 	const { activeCategory } = useSelector((state) => state.shop);
-
-	const products = useSelector(selectProducts);
-
-	console.log(activeCategory);
 
 	const dispatch = useDispatch();
 	const shopState = useSelector(selectShop);
 	const cart = useSelector(selectCart);
 	const itemAdded = useSelector(selectItemAdded);
 
-	const truncate = (text, number) =>
-		text.length > number ? `${text.substring(0, number)}...` : text;
-
-	// FILTERED PRODUCTS
-
-	const filteredProducts = products.filter((product) => {
-		if (activeCategory === "all") {
-			return true;
-		} else {
-			return product.category === activeCategory;
-		}
-	});
-
 	return (
 		<Container>
 			<Row>
 				{itemAdded && <CartAlert />}
-
-				<Section className="flexed flex-wrap py-3">
-					{shopState.isLoading ? (
-						<div className="flex-col">
-							<FadingCircle size={100} color="#ddd" />
-							<h3 className="mt-5 mb-0 py-3 text-white text-center">
-								Please Wait
-							</h3>
-						</div>
-					) : shopState.errorMsg ? (
-						<h3 className="mb-0 text-white">
-							{" "}
-							{shopState.errorMsg} ... Please Refresh{" "}
+				{shopState.isLoading ? (
+					<div className="flex-col">
+						<FadingCircle size={100} color="#ddd" />
+						<h3 className="mt-5 mb-0 py-3 text-white text-center">
+							Please Wait
 						</h3>
-					) : (
-						filteredProducts.map((product) => {
-							const {
-								id,
-								title,
-								image,
-								price,
-								category,
-								rating: { rate },
-							} = product;
-
-							return (
-								<Col lg={3} md={5} sm={4} key={id} className="my-3">
-									{/* {itemAdded && <p> item added to cart</p>} */}
-
-									<Wrap className="d-flex flex-column mx-3">
-										<div className="productImg__wrap flexed pt-2">
-											<img
-												className="product__image"
-												src={image}
-												alt={title}
-												width="100"
-												height="150"
-											/>
-										</div>
-										<div className="product__details p-2 pb-1">
-											<div className="details__top flex-btw">
-												<p className="product__title mb-0 text-center">
-													{truncate(title, 25)}
-												</p>
-												<IconButton>
-													<AddShoppingCart
-														className="items__cartIcon"
-														onClick={() => {
-															dispatch(addToCart(product));
-														}}
-													/>
-												</IconButton>
-											</div>
-											<div className="details__mid flex-btw">
-												<p className="mb-0 product__price">${price}</p>
-												<StarRatingComponent
-													name={title}
-													className="star__rating"
-													starCount={5}
-													value={rate}
-												/>
-											</div>
-											<div className="details__bottom">
-												<Link to={`/product/${id}`} className="product__link">
-													<p className="mb-0 product__more text-center my-2 py-2">
-														More Details
-													</p>
-												</Link>
-											</div>
-										</div>
-									</Wrap>
-								</Col>
-							);
-						})
-					)}
-				</Section>
+					</div>
+				) : shopState.errorMsg ? (
+					<h3 className="mb-0 text-white">
+						{shopState.errorMsg} ... Please Refresh{" "}
+					</h3>
+				) : (
+					<SingleProduct />
+				)}
 			</Row>
 		</Container>
 	);

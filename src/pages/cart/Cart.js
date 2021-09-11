@@ -1,17 +1,13 @@
 import { AddCircle, DeleteForever, RemoveCircle } from "@material-ui/icons";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
 	removeFromCart,
 	selectCart,
-	// adjustQuantity,
 	increaseQuantity,
-	// addToCart,
-	retrieveItems,
 	decreaseQuantity,
-	clearCart,
 } from "../../features/shopSlice";
 import OrderSummary from "./OrderSummary";
 
