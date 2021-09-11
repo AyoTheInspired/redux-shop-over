@@ -1,47 +1,29 @@
-import { AddShoppingCart } from "@material-ui/icons";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-	retrieveItems,
-	selectCart,
-	selectItemAdded,
-	selectProducts,
-	closeToast,
-	selectShop,
-} from "../features/shopSlice";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Toast } from "react-bootstrap";
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectItemAdded } from "../features/shopSlice";
+import { Container, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { IconButton } from "@material-ui/core";
-import StarRatingComponent from "react-star-rating-component";
-import { addToCart } from "../features/shopSlice";
 import FadingCircle from "better-react-spinkit/dist/FadingCircle";
 import CartAlert from "./CartAlert";
 import SingleProduct from "./SingleProduct";
 
 function ProductComponent() {
-	const { activeCategory } = useSelector((state) => state.shop);
-
-	const dispatch = useDispatch();
-	const shopState = useSelector(selectShop);
-	const cart = useSelector(selectCart);
+	const { errorMsg, isLoading } = useSelector((state) => state.shop);
 	const itemAdded = useSelector(selectItemAdded);
 
 	return (
 		<Container>
 			<Row>
 				{itemAdded && <CartAlert />}
-				{shopState.isLoading ? (
+				{isLoading ? (
 					<div className="flex-col">
 						<FadingCircle size={100} color="#ddd" />
 						<h3 className="mt-5 mb-0 py-3 text-white text-center">
 							Please Wait
 						</h3>
 					</div>
-				) : shopState.errorMsg ? (
-					<h3 className="mb-0 text-white">
-						{shopState.errorMsg} ... Please Refresh{" "}
-					</h3>
+				) : errorMsg ? (
+					<h3 className="mb-0 text-white">{errorMsg} ... Please Refresh </h3>
 				) : (
 					<SingleProduct />
 				)}
@@ -51,8 +33,6 @@ function ProductComponent() {
 }
 
 export default ProductComponent;
-
-const Section = styled.section``;
 
 const Wrap = styled.div`
 	background: #fff;

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	products: [],
@@ -95,9 +95,6 @@ export const shopSlice = createSlice({
 		},
 
 		decreaseQuantity: (state, action) => {
-			const payloadItem = action.payload;
-			const filteredProducts = state.cart;
-
 			return {
 				...state,
 				cart: state.cart.map((item) =>
@@ -132,11 +129,7 @@ export const {
 	toggleCategory,
 } = shopSlice.actions;
 
-// export const selectState = (state) => state.shop;
-
 export const selectProducts = (state) => state.shop.products;
-
-// export const selectActiveCategory = (state) => state.shop
 
 export const selectSelectedProduct = (state) => state.shop.selectedProduct;
 

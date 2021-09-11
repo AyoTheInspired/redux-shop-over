@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
 	requestFailure,
 	requestProcessing,
-	selectCart,
 	setProducts,
 } from "../features/shopSlice";
 import ProductComponent from "./ProductComponent";
@@ -12,7 +11,6 @@ import axios from "axios";
 
 const ProductListing = () => {
 	const dispatch = useDispatch();
-	const cart = useSelector(selectCart);
 
 	const fetchProducts = async () => {
 		dispatch(requestProcessing());
