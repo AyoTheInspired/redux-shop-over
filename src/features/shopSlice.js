@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	products: [],
+	activeCategory: "all",
 	selectedProduct: [],
 	cart: [],
 	isLoading: false,
@@ -16,6 +17,13 @@ export const shopSlice = createSlice({
 	reducers: {
 		setProducts: (state, action) => {
 			return { ...state, isLoading: false, products: action.payload };
+		},
+
+		setActiveCategory: (state, action) => {
+			return {
+				...state,
+				activeCategory: action.payload,
+			};
 		},
 
 		selectedProduct: (state, action) => {
@@ -98,22 +106,18 @@ export const shopSlice = createSlice({
 			};
 		},
 
-		// toggleCategory: (state, action) => {
-		// 	return {
-		// 		...state,
-		// 		products: state.products.filter((product) => {
-		// 			if (action.payload === "all") {
-		// 				return;
-		// 			}
-		// 			return product.category === action.payload;
-		// 		}),
-		// 	};
-		// },
+		toggleCategory: (state, action) => {
+			return {
+				...state,
+				products: action.payload,
+			};
+		},
 	},
 });
 
 export const {
 	setProducts,
+	setActiveCategory,
 	requestFailure,
 	requestProcessing,
 	selectedProduct,
@@ -130,7 +134,9 @@ export const {
 
 // export const selectState = (state) => state.shop;
 
-export const selectSetProducts = (state) => state.shop.products;
+export const selectProducts = (state) => state.shop.products;
+
+// export const selectActiveCategory = (state) => state.shop
 
 export const selectSelectedProduct = (state) => state.shop.selectedProduct;
 
