@@ -83,6 +83,7 @@ export default Navigation;
 const Nav = styled.nav`
 	position: sticky;
 	top: 0;
+	left: 0;
 	z-index: 100;
 	background: #f1f7f8;
 	width: 100%;
