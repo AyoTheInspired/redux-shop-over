@@ -24,7 +24,6 @@ function Navigation() {
 		cart.forEach((item) => {
 			count += item.qty;
 		});
-
 		setCartCount(count);
 	}, [cart, cartCount]);
 
@@ -183,13 +182,19 @@ const Nav = styled.nav`
 				display: flex;
 				flex-direction: column;
 				background: #fff;
-				padding-bottom: 100px;
-				border-top-left-radius: 15px;
-				border-bottom-left-radius: 15px;
-				height: 92vh;
-				max-width: 50vw;
+				/* padding-bottom: 100px; */
+				/* border-top-left-radius: 15px; */
+				/* border-bottom-left-radius: 15px; */
+				height: 400px;
+				/* max-width: 50vw; */
 				justify-content: space-around;
 				margin-left: auto;
+			}
+
+			li {
+				width: 50%;
+				text-align: center;
+				white-space: nowrap;
 			}
 		}
 
@@ -198,9 +203,9 @@ const Nav = styled.nav`
 		}
 
 		.toggle__sidebar {
-			transform: translateX(100%);
-			opacity: 0;
-			z-index: -99;
+			transform: translateX(-105%);
+			/* opacity: 0; */
+			/* z-index: -99; */
 		}
 	}
 `;

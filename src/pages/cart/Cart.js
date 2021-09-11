@@ -1,7 +1,7 @@
 import { AddCircle, DeleteForever, RemoveCircle } from "@material-ui/icons";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { selectCart } from "../../features/shopSlice";
 import CartItems from "./CartItems";
