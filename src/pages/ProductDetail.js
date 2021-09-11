@@ -10,7 +10,6 @@ import {
 	requestFailure,
 	requestProcessing,
 	selectedProduct,
-	selectSelectedProduct,
 } from "../features/shopSlice";
 import { AddShoppingCartRounded } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
@@ -22,8 +21,6 @@ function ProductDetail({ color }) {
 	const { singleProduct, errorMsg, isLoading } = useSelector(
 		(state) => state.shop
 	);
-
-	// const singleProduct = useSelector(selectSelectedProduct);
 
 	const fetchProductDetail = async () => {
 		dispatch(requestProcessing());
