@@ -7,6 +7,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import {
 	addToCart,
 	removeSelectedProduct,
+	requestFailure,
+	requestProcessing,
 	selectedProduct,
 	selectSelectedProduct,
 } from "../features/shopSlice";
@@ -17,16 +19,20 @@ import { FadingCircle } from "better-react-spinkit";
 function ProductDetail({ color }) {
 	const { productId } = useParams();
 	const dispatch = useDispatch();
-	const singleProduct = useSelector(selectSelectedProduct);
+	const { singleProduct, errorMsg, isLoading } = useSelector(
+		(state) => state.shop
+	);
+
+	// const singleProduct = useSelector(selectSelectedProduct);
 
 	const fetchProductDetail = async () => {
+		dispatch(requestProcessing());
 		const response = await axios
 			.get(`https://fakestoreapi.com/products/${productId}`)
 			.catch((err) => {
-				alert(err);
-				// console.log(err);
+				dispatch(requestFailure(err.message));
 			});
-		dispatch(selectedProduct(response?.data));
+		dispatch(selectedProduct(response.data));
 	};
 
 	useEffect(() => {
@@ -41,7 +47,67 @@ function ProductDetail({ color }) {
 		<Container>
 			<Row>
 				<Section className="flexed flex-wrap py-5 mt-5">
-					{singleProduct.length !== 0 ? (
+					{!singleProduct ? (
+						<p className="text-white">NO PRODUCT CHOSEN</p>
+					) : isLoading ? (
+						<div className="flex-col">
+							<FadingCircle size={100} color="#ddd" />
+							<h3 className="mt-5 mb-0 py-3 text-white text-center">
+								Please Wait
+							</h3>
+						</div>
+					) : errorMsg ? (
+						<h3 className="mb-0 text-white">{errorMsg} ... Please Refresh </h3>
+					) : (
+						<>
+							<Col
+								sm={10}
+								md={5}
+								lg={5}
+								className="singleProduct__imgWrap py-2 px-3 d-flex flex-column justify-content-between">
+								<img
+									src={singleProduct.image}
+									alt={singleProduct.title}
+									className="mx-auto m-2 singleProduct__img"
+								/>
+								<div className="singleProduct__bottom mt-3">
+									<p className="mb-0 single__product-title mr-2">
+										{singleProduct.title}{" "}
+									</p>
+
+									<p className="mb-0 single__product-price">
+										$ {singleProduct.price}
+									</p>
+								</div>
+							</Col>
+							<Col
+								sm={10}
+								md={5}
+								lg={5}
+								className="singleProduct__details p-2 d-flex flex-column">
+								<p className="mb-3 px-3 text-center flexed text-capitalize singleProduct-description">
+									{singleProduct.description}{" "}
+								</p>
+
+								<div className="flexed singleProduct__bottomRight mx-auto p-2">
+									<p className="singleProduct-category mb-0 text-capitalize">
+										{singleProduct.category}
+									</p>
+
+									<IconButton
+										onClick={() => {
+											dispatch(addToCart(singleProduct));
+										}}>
+										<AddShoppingCartRounded className="singleProduct__cart" />
+									</IconButton>
+								</div>
+							</Col>
+						</>
+					)}
+
+					{/* {!singleProduct ? (
+						<h3 className="text-white"> {errorMsg} </h3>
+					) : singleProduct.length !== 0 ? (
 						<>
 							<Col
 								sm={10}
@@ -93,7 +159,7 @@ function ProductDetail({ color }) {
 								Please Wait
 							</h3>
 						</div>
-					)}
+					)} */}
 				</Section>
 			</Row>
 		</Container>

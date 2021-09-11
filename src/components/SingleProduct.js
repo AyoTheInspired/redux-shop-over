@@ -25,7 +25,7 @@ function SingleProduct() {
 
 	return (
 		<Section className="flexed col flex-wrap">
-			{filteredProducts.map((product, index) => {
+			{filteredProducts.map((product) => {
 				const {
 					id,
 					title,
@@ -35,8 +35,8 @@ function SingleProduct() {
 				} = product;
 
 				return (
-					<Col lg={3} md={5} sm={10} className="my-3">
-						<Wrap key={id} className="d-flex flex-column mx-3">
+					<Col key={id} lg={3} md={5} sm={10} className="my-3">
+						<Wrap className="d-flex flex-column mx-3">
 							<div className="productImg__wrap flexed pt-2">
 								<img
 									className="product__image"

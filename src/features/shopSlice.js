@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	products: [],
 	activeCategory: "all",
-	selectedProduct: [],
+	singleProduct: [],
 	cart: [],
 	isLoading: false,
 	itemAdded: false,
@@ -27,7 +27,7 @@ export const shopSlice = createSlice({
 		},
 
 		selectedProduct: (state, action) => {
-			return { ...state, selectedProduct: action.payload };
+			return { ...state, isLoading: false, singleProduct: action.payload };
 		},
 		// Remove previous product before displaying new one on request
 		removeSelectedProduct: (state) => {

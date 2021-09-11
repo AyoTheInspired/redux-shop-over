@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { selectCart, setActiveCategory } from "../features/shopSlice";
+import { setActiveCategory } from "../features/shopSlice";
 
 const productCategories = [
 	{ name: "All", property: "all" },

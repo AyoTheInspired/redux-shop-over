@@ -8,8 +8,6 @@ import Cart from "./pages/cart/Cart";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-	const color = "#444";
-
 	return (
 		<div className="app">
 			<Router>
@@ -18,7 +16,6 @@ function App() {
 					<Route exact path="/" component={ProductListing} />
 					<Route exact path="/product/:productId" component={ProductDetail} />
 					<Route exact path="/cart" component={Cart} />
-					{/* <Route>404 Not Found</Route> */}
 				</Switch>
 			</Router>
 		</div>
