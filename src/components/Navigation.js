@@ -3,11 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {
-	selectCart,
-	toggleCategory,
-	removeFromCart,
-} from "../features/shopSlice";
+import { selectCart, setActiveCategory } from "../features/shopSlice";
 
 const productCategories = [
 	{ name: "All", property: "all" },
@@ -18,14 +14,10 @@ const productCategories = [
 ];
 
 function Navigation() {
-	const cart = useSelector(selectCart);
 	const [categoryClicked, setCategoryClicked] = useState(true);
 	const [cartCount, setCartCount] = useState(0);
 	const dispatch = useDispatch();
-	// const changeCatgory = (e) => {
-	// 	setCategoryClicked(!categoryClicked);
-	// 	// e.classList.add("category__item-clicked");
-	// };
+	const { activeCategory, cart } = useSelector((state) => state.shop);
 
 	useEffect(() => {
 		let count = 0;
@@ -53,10 +45,13 @@ function Navigation() {
 						const { name, property } = category;
 						return (
 							<li
-								// onClick={() => {
-								// 	dispatch(toggleCategory(property));
-								// }}
-								className=" mx-auto category__item"
+								onClick={() => {
+									dispatch(setActiveCategory(property));
+									setCategoryClicked(!categoryClicked);
+								}}
+								className={`${
+									activeCategory === property ? "active__property" : ""
+								} mx-auto category__item`}
 								key={id + 1}>
 								{name}
 							</li>
@@ -160,6 +155,11 @@ const Nav = styled.nav`
 
 	.hamburger__container {
 		cursor: pointer;
+	}
+
+	.active__property {
+		background: var(--pry-clr-1);
+		color: #fff;
 	}
 
 	@media (max-width: 768px) {

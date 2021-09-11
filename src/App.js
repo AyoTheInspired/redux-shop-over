@@ -16,10 +16,7 @@ function App() {
 				<Navigation />
 				<Switch>
 					<Route exact path="/" component={ProductListing} />
-					<Route exact path="/product/:productId">
-						<ProductDetail color={color} />
-					</Route>
-					{/* <Route exact path="/product/:productId" component={ProductDetail} color={color} /> */}
+					<Route exact path="/product/:productId" component={ProductDetail} />
 					<Route exact path="/cart" component={Cart} />
 					{/* <Route>404 Not Found</Route> */}
 				</Switch>

@@ -6,7 +6,7 @@ import {
 	selectCart,
 	setProducts,
 } from "../features/shopSlice";
-import ProductComponent from "./Product";
+import ProductComponent from "./ProductComponent";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -21,13 +21,13 @@ const ProductListing = () => {
 			.catch((err) => {
 				dispatch(requestFailure(err.message));
 			});
-
 		dispatch(setProducts(response?.data));
 	};
 
 	useEffect(() => {
 		fetchProducts();
 	}, []);
+
 	return (
 		<Container className="flexed">
 			<ProductComponent />

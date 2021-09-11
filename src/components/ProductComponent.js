@@ -5,7 +5,7 @@ import {
 	retrieveItems,
 	selectCart,
 	selectItemAdded,
-	selectSetProducts,
+	selectProducts,
 	closeToast,
 	selectShop,
 } from "../features/shopSlice";
@@ -16,9 +16,15 @@ import { IconButton } from "@material-ui/core";
 import StarRatingComponent from "react-star-rating-component";
 import { addToCart } from "../features/shopSlice";
 import FadingCircle from "better-react-spinkit/dist/FadingCircle";
+import CartAlert from "./CartAlert";
 
 function ProductComponent() {
-	const products = useSelector(selectSetProducts);
+	const { activeCategory } = useSelector((state) => state.shop);
+
+	const products = useSelector(selectProducts);
+
+	console.log(activeCategory);
+
 	const dispatch = useDispatch();
 	const shopState = useSelector(selectShop);
 	const cart = useSelector(selectCart);
@@ -27,27 +33,20 @@ function ProductComponent() {
 	const truncate = (text, number) =>
 		text.length > number ? `${text.substring(0, number)}...` : text;
 
+	// FILTERED PRODUCTS
+
+	const filteredProducts = products.filter((product) => {
+		if (activeCategory === "all") {
+			return true;
+		} else {
+			return product.category === activeCategory;
+		}
+	});
+
 	return (
 		<Container>
 			<Row>
-				{itemAdded && (
-					<ToastWrapper className="mx-auto flexed">
-						<Toast
-							className=""
-							onClose={() => {
-								dispatch(closeToast());
-							}}
-							show={itemAdded}
-							delay={3000}
-							autohide={true}>
-							<Toast.Body className="toast__body">
-								<p className="mb-0 cart__alert">
-									Item has been added to cart.{" "}
-								</p>
-							</Toast.Body>
-						</Toast>
-					</ToastWrapper>
-				)}
+				{itemAdded && <CartAlert />}
 
 				<Section className="flexed flex-wrap py-3">
 					{shopState.isLoading ? (
@@ -63,7 +62,7 @@ function ProductComponent() {
 							{shopState.errorMsg} ... Please Refresh{" "}
 						</h3>
 					) : (
-						products.map((product) => {
+						filteredProducts.map((product) => {
 							const {
 								id,
 								title,
@@ -132,23 +131,6 @@ function ProductComponent() {
 export default ProductComponent;
 
 const Section = styled.section``;
-
-const ToastWrapper = styled.div`
-	position: absolute;
-	top: 20px;
-	z-index: 100;
-	background: rgba(0, 0, 0, 0.25);
-	padding: 5px 0;
-	transition: var(--sht-trans);
-
-	.toast__body {
-		background: #fff !important;
-	}
-
-	.cart__alert {
-		font-size: 18px;
-	}
-`;
 
 const Wrap = styled.div`
 	background: #fff;
