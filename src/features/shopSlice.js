@@ -102,13 +102,6 @@ export const shopSlice = createSlice({
 				),
 			};
 		},
-
-		toggleCategory: (state, action) => {
-			return {
-				...state,
-				products: action.payload,
-			};
-		},
 	},
 });
 
@@ -126,7 +119,6 @@ export const {
 	increaseQuantity,
 	decreaseQuantity,
 	closeToast,
-	toggleCategory,
 } = shopSlice.actions;
 
 export const selectProducts = (state) => state.shop.products;
