@@ -175,6 +175,7 @@ const Nav = styled.nav`
 			left: 0;
 			min-height: calc(100vh - 49px);
 			width: 100%;
+			height: 100%;
 			background: rgba(0, 0, 0, 0.5);
 			transition: transform 0.25s linear;
 
@@ -182,7 +183,8 @@ const Nav = styled.nav`
 				display: flex;
 				flex-direction: column;
 				background: #fff;
-				height: 400px;
+				height: 90%;
+				width: 100%;
 				justify-content: space-around;
 				margin-left: auto;
 			}
