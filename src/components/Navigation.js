@@ -87,7 +87,7 @@ const Nav = styled.nav`
 	z-index: 100;
 	background: #f1f7f8;
 	width: 100%;
-	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
 
 	.homeLink {
 		text-decoration: none !important;
