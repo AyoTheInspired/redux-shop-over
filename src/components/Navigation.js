@@ -81,6 +81,7 @@ function Navigation() {
 export default Navigation;
 
 const Nav = styled.nav`
+	height: 50px;
 	position: sticky;
 	top: 0;
 	left: 0;

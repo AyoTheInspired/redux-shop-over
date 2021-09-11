@@ -22,7 +22,9 @@ function ProductComponent() {
 						</h3>
 					</div>
 				) : errorMsg ? (
-					<h3 className="mb-0 text-white">{errorMsg} ... Please Refresh </h3>
+					<h3 className="mb-0 text-white text-center">
+						{errorMsg} ... Please Refresh{" "}
+					</h3>
 				) : (
 					<SingleProduct />
 				)}
