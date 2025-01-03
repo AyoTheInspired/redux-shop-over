@@ -16,7 +16,7 @@ function CartAlert() {
 					dispatch(closeToast());
 				}}
 				show={itemAdded}
-				delay={1500}
+				delay={500}
 				autohide={true}>
 				<Toast.Body className="toast__body">
 					<p className="mb-0 cart__alert">Item has been added to cart. </p>

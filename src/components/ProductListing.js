@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -23,7 +24,7 @@ const ProductListing = () => {
 	};
 
 	useEffect(() => {
-		fetchProducts();
+		// fetchProducts();
 	}, []);
 
 	return (

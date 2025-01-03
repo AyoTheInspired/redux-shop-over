@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { allProducts } from "../exports";
 
 const initialState = {
-	products: [],
+	products: allProducts,
 	activeCategory: "all",
 	singleProduct: [],
 	cart: [],
@@ -68,10 +69,10 @@ export const shopSlice = createSlice({
 				itemAdded: true,
 				cart: inCart
 					? state.cart.map((item) =>
-							item.id === action.payload.id
-								? { ...item, qty: item.qty + 1 }
-								: item
-					  )
+						item.id === action.payload.id
+							? { ...item, qty: item.qty + 1 }
+							: item
+					)
 					: [...state.cart, { ...item, qty: 1 }],
 			};
 		},

@@ -7,12 +7,14 @@ import { AddShoppingCart } from "@material-ui/icons";
 import StarRatingComponent from "react-star-rating-component";
 import { Link } from "react-router-dom";
 import { addToCart } from "../features/shopSlice";
+import { allProducts } from "../exports";
 
 function SingleProduct() {
+	// eslint-disable-next-line
 	const { activeCategory, products } = useSelector((state) => state.shop);
 	const dispatch = useDispatch();
 
-	const filteredProducts = products.filter((product) => {
+	const filteredProducts = allProducts.filter((product) => {
 		if (activeCategory === "all") {
 			return true;
 		} else {
