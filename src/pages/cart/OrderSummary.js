@@ -11,6 +11,11 @@ function OrderSummary() {
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [totalItems, setTotalItems] = useState(0);
 
+	const handleCheckout = () => {
+		const triggerBtn = document.getElementById('blq-btn')
+		triggerBtn.click();
+	}
+
 	useEffect(() => {
 		let items = 0;
 		let price = 0;
@@ -82,7 +87,7 @@ function OrderSummary() {
 					$ {totalPrice.toLocaleString()}
 				</h5>
 			</div>
-			<button className="checkout__btn w-75 mx-auto mt-3">Checkout</button>
+			<button onClick={handleCheckout} className="checkout__btn w-75 mx-auto mt-3">Checkout</button>
 		</StyledCol>
 	);
 }
