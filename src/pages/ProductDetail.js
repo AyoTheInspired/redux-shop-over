@@ -38,6 +38,7 @@ function ProductDetail({ color }) {
 		return () => {
 			dispatch(removeSelectedProduct());
 		};
+		// eslint-disable-next-line
 	}, [productId]);
 
 	return (
